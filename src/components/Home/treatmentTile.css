@@ -1,0 +1,13 @@
+.Treatmentcard{
+    border: 2px solid #ccc;
+    position: relative;
+}
+.Treatmentcard::before{
+content: "";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border: 2px solid #ccc;
+}

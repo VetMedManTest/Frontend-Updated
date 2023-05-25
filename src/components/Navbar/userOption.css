@@ -1,0 +1,41 @@
+.user-options {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  left: 83%;
+  top: 30px !important;
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  .user-options {
+    left: 55%;
+    height: 40px;
+    width: 40px;
+    top: 35px !important; 
+  }
+}
+/* .speedDial {
+    position: fixed;
+    right: 18vmax;
+    top: 4vmax;
+  }
+  
+  .speedDialIcon {
+    width: 56px;
+    height: 56px;
+    border-radius: 100%;
+    background-color: var(--dark-green-color);
+  }
+  .tooltipStyle{
+    font-size: 23px;
+  }
+
+  @media screen and (min-width: 700px) {
+    .speedDial {
+        right: 5vmax;
+        top: 1.5vmax;
+    }
+  }
+  
+   */

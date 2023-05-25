@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Kalam:wght@400;700&display=swap');
+
+:root{
+  --dark-green-color: #217c04;
+  --green-color: #34b50c;
+  --light-green-color:#3CF300;
+  --light-color:#FEFFC9;
+}
+
+*,
+*::after,
+*::before{
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+}

@@ -1,0 +1,25 @@
+.link{
+    text-decoration: none;
+    color: #222;
+}
+html {zoom: 100%;}
+/* drop-down- animal-filter-css--start */
+.css-6hp17o-MuiList-root-MuiMenu-list{
+    display: grid;
+}
+
+
+.MuiButtonBase-root{
+    padding: 10px !important;
+    font-size: 20px !important;
+  }
+  
+  /* drop-down- animal-filter-css--ends */
+
+  .redColor{
+    color: red;
+  }
+  .greenColor{
+    color: green;
+  }
+ 
