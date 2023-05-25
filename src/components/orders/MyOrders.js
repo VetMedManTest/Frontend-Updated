@@ -84,7 +84,6 @@ const MyOrders = () => {
     }
 
     dispatch(myOrders());
-    console.log(orders)
   }, [dispatch, alert, error]);
 
   return <>

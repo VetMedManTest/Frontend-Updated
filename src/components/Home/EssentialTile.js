@@ -20,6 +20,7 @@ const EssentialTile = () => {
     if(error){
        alert.error(error);
        dispatch(clearErrors())
+
     }
 
    dispatch(getProduct(essential))
@@ -47,7 +48,7 @@ const EssentialTile = () => {
       <div className="container">
       <h1 className="text-center mb-5" style={{fontFamily:'Inter'}}>Daily Essentials</h1>
       <div className={`row ${window.innerWidth <= 800 ? 'row-cols-3' : 'row-cols-md-6'} g-3`} >
-
+      {console.log(windowWidth)}
       {/* <div className="row row-cols-1 row-cols-md-6 g-3"> */}
         {dailyEssentialType &&
           dailyEssentialType.map((essential) => (

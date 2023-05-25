@@ -45,6 +45,7 @@ const TreatmentTile = () => {
     <div className="container">
     <h1 className="text-center mb-5" style={{fontFamily:'Inter'}}>Treatment Wise</h1>
     <div className={`row ${window.innerWidth <= 800 ? 'row-cols-3' : 'row-cols-md-6'} g-3`} >
+    {console.log(windowWidth)}
     {/* <div className="row row-cols-1 row-cols-md-6 g-3"> */}
       {treatmentType &&
         treatmentType.map((treatment) => (
