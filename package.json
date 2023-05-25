@@ -39,11 +39,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-<<<<<<< HEAD
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
-=======
-    "test":  "react-scripts test",
->>>>>>> 006fae9003a5f3f299f3af11854ef6cf27ba260d
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
