@@ -22,7 +22,8 @@ import {
     UPDATE_PRODUCT_SUCCESS,
     UPDATE_PRODUCT_REQUEST,
     UPDATE_PRODUCT_FAIL
-} from "../constants/productConstants"
+} from "../constants/productConstants";
+
 import { API_URL } from "../api";
 axios.defaults.withCredentials = true;
 
