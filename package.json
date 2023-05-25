@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
@@ -38,7 +39,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+<<<<<<< HEAD
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
+=======
+    "test":  "react-scripts test",
+>>>>>>> 006fae9003a5f3f299f3af11854ef6cf27ba260d
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
