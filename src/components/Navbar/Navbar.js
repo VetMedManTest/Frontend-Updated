@@ -13,6 +13,7 @@ import { useAlert } from 'react-alert';
 import { treatmentTypeLoadAction } from '../../actions/categories/treatmentTypeAction';
 import { dailyEssentialsTypeLoadAction } from '../../actions/categories/dailyEssentialTypeAction';
 import { medicalCareTypeLoadAction } from '../../actions/categories/medicalCareTypeAction';
+import { FaAngleDown } from 'react-icons/fa';
 
 const Navbar = () => {
 
@@ -62,9 +63,9 @@ const Navbar = () => {
         <li><a href="/#home">Home</a></li>
         </Link>
         <li>
-          <a href="/#animals" className="desktop-item">Pet</a>
+          <a href="/#animals" className="desktop-item">Pet<FaAngleDown  /> </a>
           <input type="checkbox" id="showDrop" />
-          <label htmlFor="showDrop" className="mobile-item">Pet</label>
+          <label htmlFor="showDrop" className="mobile-item">Pet<FaAngleDown style={{ color: 'rgba(0, 0, 0, 0.6)' }}/></label>
           <ul className="drop-menu">
           {animalType && animalType.map(animal => (
         <li key={animal._id}>
@@ -76,14 +77,11 @@ const Navbar = () => {
           </ul>
         </li>
         <li>
-          <a href="/#" className="desktop-item">Product</a>
+          <a href="/#treatment" className="desktop-item">Categories<FaAngleDown /></a>
           <input type="checkbox" id="showMega" />
-          <label htmlFor="showMega" className="mobile-item">Product</label>
+          <label htmlFor="showMega" className="mobile-item">Categories<FaAngleDown /></label>
           <div className="mega-box">
             <div className="content">
-              {/* <div className="row">
-                <img src="img.jpg" alt="" />
-              </div> */}
               <div className="row">
                 <header>TREATMENT</header>
                 <ul className="mega-links">

@@ -9,6 +9,7 @@ import { loadMedicalCareTypeReducer } from './reducers/categories/medicalCareTyp
 import { UpdatePasswordReducer, forgotPasswordReducer, userReducer } from './reducers/userReducer';
 import { cartReducer } from './reducers/cartReducer';
 import { myOrdersReducer, newOrderReducer, orderDetailsReducer } from './reducers/orderReducer';
+import varietyReducer from './reducers/varietiesReducer';
 
 
 //combine reducers
@@ -29,6 +30,7 @@ const reducer = combineReducers({
    newReview: newReviewReducer,
    newProduct:newProductReducer,
    product: productReducer,
+   varietyDetails: varietyReducer,
 });
 
 //initial state

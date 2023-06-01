@@ -70,11 +70,12 @@ nav .wrapper{
 .nav-links .drop-menu{
   position: absolute;
   background: #fff;
-  width: 180px;
-  line-height: 45px;
+  width: 200px;
+  line-height: 33px;
   top: 55px !important;
   opacity: 0;
   visibility: hidden;
+  padding: 30px;
   box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 .nav-links li:hover .drop-menu,
@@ -83,7 +84,7 @@ nav .wrapper{
   top: 70px;
   opacity: 1;
   visibility: visible;
-  transition-delay: 2s;
+  transition-delay: 1s;
 }
 .drop-menu li a{
   width: 100%;
@@ -91,7 +92,11 @@ nav .wrapper{
   padding: 0 0 0 15px;
   font-weight: 400;
   border-radius: 0px;
+  margin-bottom: 3px;
+  border-bottom: 1px solid #000;
 }
+
+
 .mega-box{
   position: absolute;
   left: 0;
@@ -111,26 +116,50 @@ nav .wrapper{
 }
 .mega-box .content .row{
   width: calc(30% - 30px);
-  line-height: 40px;
+  line-height: 30px;
+}
+.content .row {
+  position: relative;
 }
 .content .row header{
   color: #222;
   font-size: 20px;
   font-weight: 500;
+  position: sticky;
+  background-color: #fff;
+  top: 0;
+  z-index: 1;
 }
 .content .row .mega-links{
-  margin-left: -40px;
+  margin-left: 0px;
+  font-family: Inter;
   border-left: 1px solid rgba(255,255,255,0.09);
 }
 .row .mega-links li{
   padding: 0 20px;
 }
+.mega-box .content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mega-box .row {
+  flex: 1 0 33%; /* Adjust the flex values as needed */
+  margin-right: 20px; /* Add margin between rows */
+  margin-bottom: 20px; /* Add margin between rows */
+  min-width: 250px; /* Set a minimum width for each row */
+  max-height: 280px; /* Add a maximum height to limit the row's height */
+  overflow-y: auto; /* Add vertical scroll if content exceeds the maximum height */
+}
+
+
 .row .mega-links li a{
-  padding: 0px;
-  padding: 0 20px;
   color: #222;
   font-size: 17px;
   display: block;
+  width: 100%;
+  margin-bottom: 3px;
+  border-bottom: 1px solid #000;
 }
 .row .mega-links li a:hover{
   color: #222;
@@ -267,6 +296,7 @@ nav .wrapper{
       box-shadow: none;
       transition: all 0.3s ease;
     }
+    
     #showDrop:checked ~ .drop-menu,
     #showMega:checked ~ .mega-box{
       max-height: 100%;

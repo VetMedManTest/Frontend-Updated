@@ -23,7 +23,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { NEW_REVIEW_RESET } from '../../constants/productConstants';
-
+import VarietyModel from './VarietyModel'
 
 
 const ProductDetails = () => {
@@ -53,7 +53,8 @@ const ProductDetails = () => {
       const [open, setOpen] = useState(false);
       const [rating, setRating] = useState(0);
       const [comment, setComment] = useState("");
-    
+      
+
       const increaseQuantity = () =>{
         if(product.Stock <= quantity) return
     
@@ -98,7 +99,6 @@ const ProductDetails = () => {
           alert.error(reviewError)
           dispatch(clearErrors())
          }
-  
          if(success){
           alert.success("Review Submitted Successfully");
           dispatch({type: NEW_REVIEW_RESET})
@@ -112,6 +112,8 @@ const ProductDetails = () => {
   {
     loading ? <Loader />:
     <>
+
+
     <MetaData title={product.name} />
     <div className="ProductDetails">
     <div className='Container'>
@@ -143,7 +145,9 @@ const ProductDetails = () => {
             <input type="number" value={quantity} onChange={(e)=> setQuantity(e.target.value) } />
             <button onClick={increaseQuantity}>+</button>
             </div>
+            {product.varieties ? <VarietyModel varietyId={product.varieties}/> :<>
             <button onClick={addToCartHandler} disabled={product.Stock < 1 ? true: false}>Add to Cart</button>
+            </>}
             </div>
     
             <p>
@@ -189,7 +193,7 @@ const ProductDetails = () => {
          <DialogContent className='submitDialog'>
          <Rating
           onChange={(e)=> setRating(e.target.value)}
-          value ={rating}
+          value={Number(rating)}
           size="large"
             />
 
