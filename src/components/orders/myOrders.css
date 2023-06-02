@@ -69,8 +69,8 @@
   
     .MuiTablePagination-root:last-child{
       position: absolute;
-      top: 88%;
-      left: 70%;
+      top: 80%;
+      left: 60%;
     }
     #myOrdersHeading {
       font: 400 2.2vmax "Roboto";

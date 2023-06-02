@@ -138,7 +138,7 @@ const ProductDetails = () => {
                 <span className='detailssBlock-2'>({product.numOfReviews} Reviews)</span>
             </div>
             <div className="detailsBlock-3">
-            <h1>{`₹${product.price}`}</h1>
+            {/* <h1>{`₹${product.price}`}</h1> */}
             <div className="detailsBlock-3-1">
             <div className="detailsBlock-3-1-1">
             <button onClick={decreaseQuantity}>-</button>
@@ -167,15 +167,52 @@ const ProductDetails = () => {
         <Card className="card-detailsBlock-5">
         <b>Key Features</b>
         <ul>
-            <li> <p>Brand - {product.brand}</p></li>
-            <li> <p>Model Number - {product.model_number}</p></li>
-            <li> <p>Stage - {product.stage}</p></li>
-            <li> <p>Condition - {product.condition}</p></li>
-            <li> <p>Specific Feature - {product.specific_feature}</p></li>
-            <li> <p>Packaging Dimension - {product.packaging_dimensions}</p></li>
-            <li> <p>Mode of Administration - {product.mode_of_administration}</p></li>
-            <li><p>caution - {product.caution}</p></li>
-            <li><p>Weight of Commodity - {product.weight_of_the_commodity}</p></li>
+        {product.brand && product.brand.trim() !== '' && (
+        <li>
+          <p>Brand - {product.brand}</p>
+        </li>
+          )}
+      {product.model_number &&  product.model_number.trim() !== '' &&(
+      <li>
+        <p>Model Number - {product.model_number}</p>
+      </li>
+    )}
+    {product.stage &&  product.stage.trim() !== '' &&(
+    <li>
+      <p>Stage - {product.stage}</p>
+    </li>
+    )}
+  {product.condition && product.condition.trim() !== '' && (
+  <li>
+    <p>Condition - {product.condition}</p>
+  </li>
+  )}
+  {product.specific_feature && product.specific_feature.trim() !== '' && (
+  <li>
+    <p>Specific Feature - {product.specific_feature}</p>
+  </li>
+  )}
+  {product.packaging_dimensions && product.packaging_dimensions.trim() !== '' && (
+  <li>
+    <p>Packaging Dimension - {product.packaging_dimensions}</p>
+  </li>
+  )}
+  {product.mode_of_administration && product.mode_of_administration.trim() !== '' && (
+  <li>
+    <p>Mode of Administration - {product.mode_of_administration}</p>
+  </li>
+  )}
+  {product.caution && product.caution.trim() !== '' && (
+  <li>
+    <p>Caution - {product.caution}</p>
+  </li>
+  )}
+  {product.weight_of_the_commodity && (
+  <li>
+    <p>Weight of Commodity - {product.weight_of_the_commodity}</p>
+  </li>
+  )}
+
         </ul>      
         </Card>
   

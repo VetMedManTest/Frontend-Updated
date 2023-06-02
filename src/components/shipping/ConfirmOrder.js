@@ -18,17 +18,17 @@ const ConfirmOrder = () => {
     const alert = useAlert()
     const dispatch = useDispatch();
 
-    const subtotal = cartItems.reduce(
-        (acc, item) => acc + item.quantity * item.price,
-        0
-      );
+    // const subtotal = cartItems.reduce(
+    //     (acc, item) => acc + item.quantity * item.price,
+    //     0
+    //   );
 
       //ask about shipping charges criteria 
     
-      const shippingCharges = subtotal > 1000 ? 0 : 200;
-      const tax = subtotal * 0.18;
-      const totalPrice = subtotal + tax + shippingCharges;
-      const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`;
+      // const shippingCharges = subtotal > 1000 ? 0 : 200;
+      // const tax = subtotal * 0.18;
+      // const totalPrice = subtotal + tax + shippingCharges;
+      // const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`;
 
 
       useEffect(() => {
@@ -37,40 +37,27 @@ const ConfirmOrder = () => {
           dispatch(clearErrors());
         }
       }, [dispatch, error, alert,navigate]);
-    
-
-      //user order 
-      //const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
-
-      
-    //   const order = {
-    //     shippingInfo,
-    //     orderItems:cartItems,
-    //     itemPrice: orderInfo.subtotal,
-    //     taxPrice:orderInfo.tax,
-    //     shippingPrice: orderInfo.shippingCharges,
-    //     totalPrice:orderInfo.totalPrice
-    //   }
+  
 
       const proceedToPayment = () => {
-        const data = {
-          subtotal,
-          shippingCharges,
-          tax,
-          totalPrice,
-        };
+        // const data = {
+        //   subtotal,
+        //   shippingCharges,
+        //   tax,
+        //   totalPrice,
+        // };
     
-        sessionStorage.setItem("orderInfo", JSON.stringify(data));
+        // sessionStorage.setItem("orderInfo", JSON.stringify(data));
 
-        const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
+        // const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
            const order = {
         shippingInfo,
         billingInfo,
         orderItems:cartItems,
-        itemPrice: orderInfo.subtotal,
-        taxPrice:orderInfo.tax,
-        shippingPrice: orderInfo.shippingCharges,
-        totalPrice:orderInfo.totalPrice
+        // itemPrice: orderInfo.subtotal,
+        // taxPrice:orderInfo.tax,
+        // shippingPrice: orderInfo.shippingCharges,
+        // totalPrice:orderInfo.totalPrice
       }
 
         dispatch(createOrder(order))
@@ -100,7 +87,7 @@ const ConfirmOrder = () => {
               </div>
               <div>
                 <p>Address:</p>
-                <span>{address}</span>
+                <span>{shippingInfo.address}, {shippingInfo.city}, {shippingInfo.state}, {shippingInfo.pinCode}, {shippingInfo.country}</span>
               </div>
             </div>
           </div>
@@ -114,10 +101,10 @@ const ConfirmOrder = () => {
                     <Link to={`/product/${item.product}`}>
                       {item.name}
                     </Link>{" "}
-                    <span>
+                    {/* <span>
                       {item.quantity} X ₹{item.price} ={" "}
                       <b>₹{item.price * item.quantity}</b>
-                    </span>
+                    </span> */}
                   </div>
                 ))}
             </div>
@@ -126,8 +113,8 @@ const ConfirmOrder = () => {
         {/*  */}
         <div>
           <div className="orderSummary">
-            <Typography>Order Summery</Typography>
-            <div>
+            {/* <Typography>Order Summery</Typography> */}
+            {/* <div>
               <div>
                 <p>Subtotal:</p>
                 <span>₹{subtotal}</span>
@@ -140,15 +127,15 @@ const ConfirmOrder = () => {
                 <p>GST:</p>
                 <span>₹{tax}</span>
               </div>
-            </div>
+            </div> */}
 
-            <div className="orderSummaryTotal">
+            {/* <div className="orderSummaryTotal">
               <p>
                 <b>Total:</b>
               </p>
               <span>₹{totalPrice}</span>
             </div>
-              
+               */}
               {/* confirm order */}
             <button onClick={proceedToPayment}>Confirm Order</button>
           </div>

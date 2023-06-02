@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
       <div className="product-details">
         <h2>{product.name}</h2>
         <div className="product-info">
-        <div className="product-price">Price: ₹{product.price}</div>
+        {/* <div className="product-price">Price: ₹{product.price}</div> */}
         <div className="product-size">Size: {product.size_of_instrument.join(', ')}</div>
         <div className="product-stage">Stage: {product.stage}</div>
         <div className="product-condition">Condition: {product.condition}</div>

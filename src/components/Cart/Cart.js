@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { addItemsToCart, removeItemsFromCart } from '../../actions/cartAction'
 import "./Cart.css"
 import CartItemCard from './CartItemCard'
+import MetaData from '../MetaData'
 
 
 const Cart = () => {
@@ -43,6 +44,7 @@ const Cart = () => {
 
 
   return <>
+    <MetaData title="Cart-items" />
   {
     !cartItems || cartItems.length === 0 ?(
       <div className="emptyCart">
@@ -55,7 +57,7 @@ const Cart = () => {
     <div className="cartHeader">
         <p>Product</p>
         <p>Quantity</p>
-        <p>Subtotal</p>
+        {/* <p>Subtotal</p> */}
     </div>
 
     {
@@ -69,7 +71,7 @@ const Cart = () => {
             <input type="number" value={item.quantity} readOnly />
             <button onClick={()=>increaseQuantity(item.product,item.quantity,item.stock)}>+</button>
         </div>
-        <p className='cartSubtotal'>{`$${item.price * item.quantity} `}</p>
+        {/* <p className='cartSubtotal'>{`$${item.price * item.quantity} `}</p> */}
     </div>
       ))
     }
@@ -77,10 +79,10 @@ const Cart = () => {
    
     <div className="cartGrossProfit">
               <div></div>
-              <div className="cartGrossProfitBox">
+              {/* <div className="cartGrossProfitBox">
                 <p>Gross Total</p>
                 <p>{`$${cartItems.reduce((acc,item) => acc + item.quantity * item.price,0)}`}</p>
-              </div>
+              </div> */}
               <div></div>
               <div className="checkOutBtn">
                 <button onClick={checkOutHandler}>Check Out</button>

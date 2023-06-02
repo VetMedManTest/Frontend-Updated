@@ -42,13 +42,13 @@ const MyOrders = () => {
       flex: 0.3,
     },
 
-    {
-      field: "amount",
-      headerName: "Amount",
-      type: "number",
-      minWidth: 270,
-      flex: 0.5,
-    },
+    // {
+    //   field: "amount",
+    //   headerName: "Amount",
+    //   type: "number",
+    //   minWidth: 270,
+    //   flex: 0.5,
+    // },
 
     {
       field: "actions",
@@ -74,7 +74,7 @@ const MyOrders = () => {
       itemsQty: item.orderItems.length,
       id: item._id,
       status: item.orderStatus,
-      amount: item.totalPrice,
+      // amount: item.totalPrice,
     });
   });
   useEffect(() => {

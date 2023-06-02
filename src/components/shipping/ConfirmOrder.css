@@ -1,7 +1,8 @@
-.confirmOrderPage {
+ .confirmOrderPage {
     height: 100vh;
-    background-color: white;
+    background-color: #fff;
     display: grid;
+    margin: 0 200px;
     grid-template-columns: 6fr 3fr;
   }
   
@@ -33,35 +34,6 @@
     font-weight: normal;
   }
   
-  
-  /* .confirmshippingArea {
-    padding: 5vmax;
-    padding-bottom: 0%;
-  }
-  
-  .confirmshippingArea > p {
-    font: 400 1.8vmax "Inter";
-  }
-  
-  .confirmshippingAreaBox,
-  .confirmCartItemsContainer {
-    margin: 2vmax;
-  }
-  
-  .confirmshippingAreaBox > div {
-    display: flex;
-    margin: 1vmax 0;
-  }
-  
-  .confirmshippingAreaBox > div > p {
-    font: 400 1vmax "Inter";
-    color: black;
-  }
-  .confirmshippingAreaBox > div > span {
-    margin: 0 1vmax;
-    font: 100 1vmax "Inter";
-    color: #575757;
-  } */
   
   .confirmCartItems > p {
     font: 400 1.8vmax "Inter";
@@ -225,4 +197,4 @@
       margin: 4vw auto;
       font: 400 4vw "Inter";
     }
-  }
+  } 

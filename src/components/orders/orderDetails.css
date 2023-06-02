@@ -1,20 +1,105 @@
+/* .orderDetailsPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.orderDetailsContainer {
+  background-color: #f7f7f7;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.orderDetailsContainerBox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.orderDetailsContainerBox div {
+  display: flex;
+  align-items: center;
+}
+
+.orderDetailsContainerBox p {
+  font-weight: bold;
+  margin-right: 10px;
+  font-family: Inter;
+}
+
+.orderDetailsCartItems {
+  background-color: #f7f7f7;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between; 
+}
+
+.orderDetailsCartItemsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.orderDetailsCartItemsContainer div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.orderDetailsCartItemsContainer img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.orderdetailItemName {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.greenColor {
+  color: green;
+}
+
+.redColor {
+  color: red;
+} */
+
+
 .orderDetailsPage {
-    background-color: white;
+    background-color: #fff;
+    margin: 0px 100px;
   }
   
   .orderDetailsContainer > h1 {
-    font: 300 3vmax "Inter";
+    font: 300 1vmax "Inter";
     margin: 1vmax 0;
-    color: var(--dark-green-color);
   }
   
   .orderDetailsContainer {
-    padding: 5vmax;
+    padding: 0.5vmax 5vmax;
     padding-bottom: 0%;
   }
   
   .orderDetailsContainer > p {
-    font: 400 1.8vmax "Inter";
+    font: 400 2vmax "Inter";
+    background-color: #f7f7f7;
+
   }
   
   .orderDetailsContainerBox,
@@ -28,8 +113,7 @@
   }
   
   .orderDetailsContainerBox > div > p {
-    font: 400 1vmax "Inter";
-    /* color: black; */
+    font: 400 1.2vmax "Inter";
   }
   .orderDetailsContainerBox > div > span {
     margin: 0 1vmax;
@@ -54,14 +138,14 @@
   }
   
   .orderDetailsCartItemsContainer > div > img {
-    width: 8vmax;
+    width: 5vmax;
   }
   
   .orderDetailsCartItemsContainer > div > a {
     color: var(--dark-green-color);
-    margin: 0 2vmax;
+    margin: 0 8vmax;
     width: 60%;
-    font-size: 2vmax;
+    font-size: 1.2vmax;
     text-decoration: none;
   }
   

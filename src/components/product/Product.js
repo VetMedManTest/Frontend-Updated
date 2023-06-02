@@ -128,11 +128,9 @@ const handleFilterClick = () => {
                 to={`/search/treatment/${treatment._id.toString()}`}
                 key={treatment._id}
               >
-                  <CardContent>
-                    <Typography variant="h6" color="text.primary">
+                    <Typography variant="h6" color="text.primary" style={{borderBottom: '1px solid rgba(0, 0, 0, 0.205)'}}>
                       {treatment.TreatmentTypeName}
                     </Typography>
-                  </CardContent>
               </Link>
             ))}
         </Box>
@@ -165,7 +163,7 @@ const handleFilterClick = () => {
               {/* daily-Essential-Card */}
               <Card sx={{ minWidth: 150, mb: 3,mt:2, p: 2 }}>
             <Box sx={{ pb: 2 }}>
-                <Typography component="h4" sx={{ color: '#217c04', fontWeight: 600 }}>
+                <Typography component="h4" sx={{ color: '#217c04', fontWeight: 600 ,fontFamily:'Inter'}}>
                           OUR DAILY ESSENTIALS
                 </Typography>
                 {
@@ -173,11 +171,9 @@ const handleFilterClick = () => {
                   
                   <Link className='link' to={`/search/essential/${essential._id.toString()}`} key={essential._id}>
                 <Card sx={{ minWidth: 150, mb: 1,mt:1, p: 1}}>
-                <CardContent>
                 <Typography variant="h6" color="text.primary">
                           {essential.essentialName}
                 </Typography>
-                </CardContent>
               </Card>
               </Link>
                 ))
@@ -192,18 +188,16 @@ const handleFilterClick = () => {
           {/* medical-care-card */}
           <Card sx={{ minWidth: 150, mb: 3,mt:2, p: 2 }}>
             <Box sx={{ pb: 2 }}>
-                <Typography component="h4" sx={{ color: '#217c04', fontWeight: 600 }}>
-                          SORT BY Medical
+                <Typography component="h4" sx={{ color: '#217c04', fontWeight: 600 , fontFamily:'Inter'}}>
+                          SORT BY MEDICAL
                 </Typography>
                 {
                 MedicalCareType && MedicalCareType.map((medical) => (
                    <Link className='link' to={`/search/medical/${medical._id.toString()}`} key={medical._id}>
                 <Card sx={{ minWidth: 150, mb: 1,mt:1, p: 1}}>
-                <CardContent>
                 <Typography variant="h6" color="text.primary">
                           {medical.medicalCareName}
                 </Typography>
-                </CardContent>
               </Card>
              </Link>
                 ))

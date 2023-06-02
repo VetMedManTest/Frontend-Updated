@@ -24,6 +24,11 @@ const VarietyModel = ({ varietyId }) => {
 const alert = useAlert();
   useEffect(() => {
     dispatch(getVarietyDetails(varietyId));
+
+    const storedValues = localStorage.getItem("VetselectedValues");
+    if (storedValues) {
+      setSelectedValues(JSON.parse(storedValues));
+    }
   }, [dispatch, varietyId]);
 
   if (loading) {
@@ -58,6 +63,7 @@ const alert = useAlert();
 
   const handleFormSubmit = () => {
     console.log(selectedValues);
+    localStorage.setItem("VetselectedValues", JSON.stringify(selectedValues));
     setShowAddToCart(true);
     handleClose();
     
