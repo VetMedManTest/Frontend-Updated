@@ -62,7 +62,7 @@ const Register = () => {
   
                   <form onSubmit={registerSubmit} 
                   >
-                    <p>Please Register to login</p>
+                    <p>Please Register to proceed</p>
   
                     <div className="form-outline mb-4">
                       <input type={'text'} id="name" className="form-control"
@@ -93,7 +93,6 @@ const Register = () => {
                     <div className="text-center pt-1 mb-5 pb-1">
                         <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Register
                           </button>
-                          <Link to="/password/forgot">Forgot password?</Link>
                       </div>
                     <div className="d-flex align-items-center justify-content-center pb-4">
                       
@@ -112,7 +111,7 @@ const Register = () => {
                 <div className="text-black px-3 py-4 p-md-5 mx-md-4">
                   <h4 className="mb-4">We are more than just a company</h4>
                   <p className="small mb-0">
-                    At Vedmedman, our utmost aim is to advance the welfare and wellness of animals. We accomplish this by upholding uncompromising quality criteria for all our wares. Our perspective on animal welfare is driven by our acknowledgment of the exceptional connection between animals and their human counterparts, which inspires us to provide incomparable service to strengthen this extraordinary relationship.</p>
+                    At Vetmedman, our utmost aim is to advance the welfare and wellness of animals. We accomplish this by upholding uncompromising quality criteria for all our wares. Our perspective on animal welfare is driven by our acknowledgment of the exceptional connection between animals and their human counterparts, which inspires us to provide incomparable service to strengthen this extraordinary relationship.</p>
                     <br />
                     <p className="small mb-0">
                     We take pride in our commitment to supplying first-rate veterinary therapeutics and surgical medical equipment to benefit animal healthcare experts' and pet owners' cherished animal companions. Our dedication to serving the export market empowers us to attend to the unique needs of our customers.</p>
@@ -121,7 +120,7 @@ const Register = () => {
                     If you are a new customer, we warmly welcome you to register with us today and encounter the pinnacle of empathetic animal care products and services we offer. Existing customers need not sign up again.</p>
                     <br />
                     <p className="small mb-0">
-                    Thank you for choosing Vedmedman as your esteemed partner in providing exceptional animal care products and medicines.</p>
+                    Thank you for choosing Vetmedman as your esteemed partner in providing exceptional animal care products and medicines.</p>
                 </div>
               </div>
             </div>

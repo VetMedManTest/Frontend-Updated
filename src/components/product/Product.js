@@ -90,7 +90,7 @@ const handleFilterClick = () => {
               <Card sx={{ minWidth: 170, mb: 3, mt: 3, p: 2 ,justifyContent:'center', alignItems:'center'}}>
             <Box sx={{ pb: 2 }}>
                 <Typography component="h4" sx={{ color: '#217c04', fontWeight: 600, fontFamily:'Inter'  }}>
-                          SORT BY ANIMAL
+                          Sort by Animal
                 </Typography>
                 {
                 animalType && animalType.map((animal) => (
@@ -116,7 +116,7 @@ const handleFilterClick = () => {
         id="treatment-header"
       >
         <Typography component="h4" sx={{ color: '#217c04', fontWeight: 600 ,fontFamily: 'Inter'}}>
-          SORT BY TREATMENT 
+          Sort by Treatment 
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
@@ -164,7 +164,7 @@ const handleFilterClick = () => {
               <Card sx={{ minWidth: 150, mb: 3,mt:2, p: 2 }}>
             <Box sx={{ pb: 2 }}>
                 <Typography component="h4" sx={{ color: '#217c04', fontWeight: 600 ,fontFamily:'Inter'}}>
-                          OUR DAILY ESSENTIALS
+                Daily Essentials
                 </Typography>
                 {
                 dailyEssentialType && dailyEssentialType.map((essential) => (
@@ -189,7 +189,7 @@ const handleFilterClick = () => {
           <Card sx={{ minWidth: 150, mb: 3,mt:2, p: 2 }}>
             <Box sx={{ pb: 2 }}>
                 <Typography component="h4" sx={{ color: '#217c04', fontWeight: 600 , fontFamily:'Inter'}}>
-                          SORT BY MEDICAL
+                          Sort by Medical Care Use
                 </Typography>
                 {
                 MedicalCareType && MedicalCareType.map((medical) => (

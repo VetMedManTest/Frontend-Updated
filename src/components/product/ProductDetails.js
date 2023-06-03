@@ -21,6 +21,7 @@ import {
   DialogContent,
   DialogTitle,
   Button,
+  colors,
 } from "@material-ui/core";
 import { NEW_REVIEW_RESET } from '../../constants/productConstants';
 import VarietyModel from './VarietyModel'
@@ -141,24 +142,24 @@ const ProductDetails = () => {
             {/* <h1>{`₹${product.price}`}</h1> */}
             <div className="detailsBlock-3-1">
             <div className="detailsBlock-3-1-1">
-            <button onClick={decreaseQuantity}>-</button>
+            <Button variant="contained" style={{borderRadius:"50%",backgroundColor:"red"}} onClick={decreaseQuantity}>-</Button>
             <input type="number" value={quantity} onChange={(e)=> setQuantity(e.target.value) } />
-            <button onClick={increaseQuantity}>+</button>
+            <Button variant="contained" style={{borderRadius:"100%",backgroundColor:"green"}} onClick={increaseQuantity}>+</Button>
             </div>
             {product.varieties ? <VarietyModel varietyId={product.varieties}/> :<>
-            <button onClick={addToCartHandler} disabled={product.Stock < 1 ? true: false}>Add to Cart</button>
+            <Button variant="outlined" style={{textTransform: 'none',marginLeft:"20px",marginTop:"20px"}} onClick={addToCartHandler} disabled={product.Stock < 1 ? true: false}>Add to Cart</Button>
             </>}
             </div>
     
             <p>
-            Availability:
+            Availability:{" "}
             <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
-               {product.Stock} Products {product.Stock < 1 ? "OutOfStock" : "InStock"}
+               {product.Stock} Products {product.Stock < 1 ? "Out Of Stock" : "In Stock"}
             </b>
             </p>
         </div>
         <div className="detailsBlock-4">
-            Description : <p>{product.description}</p>
+            Description : <p style={{marginRight:"15vw"}}>{product.description}</p>
         </div>
         <div className='detailsBlock-6'>
         <p className="no-margin">Shelf Life - {product.shelflife}</p>
@@ -172,6 +173,21 @@ const ProductDetails = () => {
           <p>Brand - {product.brand}</p>
         </li>
           )}
+        {product.material_used && product.material_used.trim() !== '' && (
+        <li>
+          <p>Material Used - {product.material_used}</p>
+        </li>
+          )}
+  {product.color && !(product.color.includes("")) && (
+  <li>
+    <p>Color - {product.color.toString()}</p>
+  </li>
+  )}
+  {product.size_of_instrument && !(product.size_of_instrument.includes("")) && (
+  <li>
+    <p>Size of instrument - {product.size_of_instrument.toString()}</p>
+  </li>
+  )}
       {product.model_number &&  product.model_number.trim() !== '' &&(
       <li>
         <p>Model Number - {product.model_number}</p>
@@ -207,12 +223,77 @@ const ProductDetails = () => {
     <p>Caution - {product.caution}</p>
   </li>
   )}
-  {product.weight_of_the_commodity && (
+  {product.weight_of_the_commodity && product.weight_of_the_commodity.trim() !== '' && (
   <li>
     <p>Weight of Commodity - {product.weight_of_the_commodity}</p>
   </li>
   )}
+    {product.dimension_of_the_product && product.dimension_of_the_product.trim() !== '' && (
+  <li>
+    <p>Product Dimensions - {product.dimension_of_the_product}</p>
+  </li>
+  )}
 
+    {product.MOQ && product.MOQ.trim() !== '' && (
+  <li>
+    <p>Minimum Order Quantity - {product.MOQ}</p>
+  </li>
+  )}
+  {product.dosage_recommended && product.dosage_recommended.trim() !== '' && (
+  <li>
+    <p>Recommended Dosage - {product.dosage_recommended}</p>
+  </li>
+  )}
+    {product.active_ingredients && product.active_ingredients.trim() !== '' && (
+  <li>
+    <p>Active Ingredients - {product.active_ingredients}</p>
+  </li>
+  )}
+      {product.fast_moving_spare_parts && product.fast_moving_spare_parts.trim() !== '' && (
+  <li>
+    <p>Fast Moving Spare parts - {product.fast_moving_spare_parts}</p>
+  </li>
+  )}
+    {product.country_of_manufacture && product.country_of_manufacture.trim() !== '' && (
+  <li>
+    <p>Country of Manufacture - {product.country_of_manufacture}</p>
+  </li>
+  )}
+     {product.lead_time_to_deliver && product.lead_time_to_deliver.trim() !== '' && (
+  <li>
+    <p>Lead Time to Deliver - {product.lead_time_to_deliver}</p>
+  </li>
+  )}
+    {product.fda_or_certified && product.fda_or_certified.trim() !== '' && (
+  <li>
+    <p>FDA or Certified - {product.fda_or_certified}</p>
+  </li>
+  )}
+    {product.total_primary_packet && product.total_primary_packet.trim() !== '' && (
+  <li>
+    <p>Total Primary Packet - {product.total_primary_packet}</p>
+  </li>
+  )}
+    {product.primary_packing_Single_hand && product.primary_packing_Single_hand.trim() !== '' && (
+  <li>
+    <p>Single hand Primary packing - {product.primary_packing_Single_hand}</p>
+  </li>
+  )}
+    {product.prior_prophylactic_preparation && product.prior_prophylactic_preparation.trim() !== '' && (
+  <li>
+    <p>Prior Prophylactic Preparation - {product.prior_prophylactic_preparation}</p>
+  </li>
+  )}
+  {product.shelflife && product.shelflife.trim() !== '' && (
+  <li>
+    <p>Shelf Life - {product.shelflife}</p>
+  </li>
+  )}
+  {product.lab_instruments && product.lab_instruments.trim() !== '' && (
+  <li>
+    <p>Lab Instruments - {product.lab_instruments}</p>
+  </li>
+  )}
         </ul>      
         </Card>
   

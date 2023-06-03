@@ -2,17 +2,17 @@
   position: absolute;
   height: 50px;
   width: 50px;
-  left: 83%;
-  top: 30px !important;
+  left: 90vw;
+  top: 3.5vh !important;
   z-index: 0;
 }
 
 @media (max-width: 768px) {
   .user-options {
-    left: 55%;
-    height: 40px;
-    width: 40px;
-    top: 35px !important; 
+    left: 60vw;
+    height: 2vh;
+    width: 2vw;
+    top: 5vh !important; 
   }
 }
 /* .speedDial {

@@ -36,8 +36,8 @@ const Home = () => {
         <div className='hero-image'>
         <div className='hero-content'>
             <div className='hero-content-inner'>
-                <p>ALL IN ONE PLACE</p>
-                <h1>THE BEST TO PLACE BUY SUPPLYS FOR YOUR PETS</h1>
+                <p>All in one place</p>
+                <h1>The best place to buy supplies for your pets</h1>
                 <Link to='/products'>
                 <button className='home-btn' type="button">EXPLORE <MdKeyboardDoubleArrowRight /></button>
                 </Link>

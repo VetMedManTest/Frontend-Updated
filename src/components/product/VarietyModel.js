@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getVarietyDetails } from '../../actions/varietiesAction';
 import Loader from '../layout/Loader/Loader';
-import { Checkbox, FormControlLabel, Button, Modal } from '@mui/material';
+import { Checkbox, FormControlLabel, Button, Modal, FormControl } from '@mui/material';
 import { addItemsToCart } from '../../actions/cartAction';
 import { useParams } from 'react-router-dom';
 import { useAlert } from 'react-alert';
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 import './varietyModel.css'
 
 const VarietyModel = ({ varietyId }) => {
@@ -77,21 +79,28 @@ const alert = useAlert();
   return (
     <div>
  {showAddToCart ? (
-        <button onClick={addToCartHandler} disabled={product.Stock < 1 ? true : false}>
+        <Button variant="outlined" style={{textTransform: 'none',marginLeft:"20px",marginTop:"20px"}} onClick={addToCartHandler} disabled={product.Stock < 1 ? true : false}>
           Add to Cart
-        </button>
+        </Button>
       ) : (
-        <Button onClick={handleOpen}>Open Variety Selection</Button>
+        <Button variant="outlined" style={{textTransform: 'none',marginLeft:"20px",marginTop:"20px"}} onClick={handleOpen}>Open Variety Selection</Button>
       )}
 <Modal open={open} onClose={handleClose}>
   <div className="modal-container">
+  {/* <IconButton className="CloseButton"
+          style={{ position: "absolute", top: "1vh", right: "13vw",backgroundColor:"red"}}
+          onClick={() => setOpen(false)}
+        >
+          <CloseIcon />
+        </IconButton> */}
     <h2>Variety Details</h2>
+    <FormControl>
     {Object.entries(variety).map(([key, values]) => {
       if (Array.isArray(values)) {
         return (
-          <div key={key}>
+          <div className="section" key={key}>
             <h6>{key}</h6>
-            <div className="checkbox-container">
+            <div  className="checkbox-container">
               {values.map((value) => (
                 <div className="checkbox-item" key={value}>
                   <FormControlLabel
@@ -113,6 +122,7 @@ const alert = useAlert();
         return null;
       }
     })}
+    </FormControl>
     <Button onClick={handleFormSubmit}>Submit</Button>
   </div>
 </Modal>

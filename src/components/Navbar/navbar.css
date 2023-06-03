@@ -33,14 +33,14 @@ nav .wrapper{
 } */
 
 .logo img{
-  width: 285px;
-  height: 94px;
-  margin-top: -46px;
-  margin-left: -220px
+  width: 19vw;
+  height: 9vh;
+  margin-top: -4.5vh;
+  margin-left: -6vw;
 }
 .wrapper .nav-links{
   display: inline-flex;
-  gap: 20px;
+  gap: 10px;
   
 
 }

@@ -22,7 +22,7 @@ import Success from './components/shipping/Success';
 import MyOrders from './components/orders/MyOrders';
 import OrderDetails from './components/orders/OrderDetails';
 import BillingAddress from './components/shipping/BillingAddress';
-
+import ScrollToTop from './scrollToTop';
 const ProtectedRoute = ({children}) => {
   const { isAuthenticated} = useSelector((state)=>state.user);
   if(!isAuthenticated ){
@@ -38,6 +38,7 @@ function App() {
   return (
     <>
     <Router>
+      <ScrollToTop/>
         <Navbar />
         <Routes>
         <Route path='/' element={<Home />} />
