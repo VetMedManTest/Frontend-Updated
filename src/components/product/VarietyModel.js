@@ -6,8 +6,6 @@ import { Checkbox, FormControlLabel, Button, Modal, FormControl } from '@mui/mat
 import { addItemsToCart } from '../../actions/cartAction';
 import { useParams } from 'react-router-dom';
 import { useAlert } from 'react-alert';
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
 import './varietyModel.css'
 
 const VarietyModel = ({ varietyId }) => {
@@ -17,7 +15,7 @@ const VarietyModel = ({ varietyId }) => {
   const [selectedValues, setSelectedValues] = useState([]);
   const [open, setOpen] = useState(false);
   const [showAddToCart, setShowAddToCart] = useState(false);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity] = useState(1);
 
   const { id } = useParams();
   const { product } = useSelector(

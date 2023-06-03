@@ -21,7 +21,6 @@ import {
   DialogContent,
   DialogTitle,
   Button,
-  colors,
 } from "@material-ui/core";
 import { NEW_REVIEW_RESET } from '../../constants/productConstants';
 import VarietyModel from './VarietyModel'
