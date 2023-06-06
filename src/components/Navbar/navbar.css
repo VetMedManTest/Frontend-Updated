@@ -33,7 +33,7 @@ nav .wrapper{
 } */
 
 .logo img{
-  width: 19vw;
+  width: 10vw;
   height: 9vh;
   margin-top: -4.5vh;
   margin-left: -6vw;
@@ -46,7 +46,7 @@ nav .wrapper{
 }
 .nav-links{
  position: relative;
- left: -30px;
+ /* left: -30px; */
 }
 .nav-links li{
   list-style: none;
@@ -192,7 +192,7 @@ nav .wrapper{
     height: 50px;
     border-radius: 30px;
     padding: 0px 10px;
-    width: 140px;
+    width: 10vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -280,14 +280,14 @@ nav .wrapper{
       margin: 15px 10px;
     }
     .nav-links li a{
-      padding: 0 20px;
+      /* padding: 0 20px; */
       display: block;
       font-size: 20px;
     }
     .nav-links .drop-menu{
       position: static;
       opacity: 1;
-      top: 65px;
+      top: 20px;
       visibility: visible;
       padding-left: 20px;
       width: 100%;
@@ -427,4 +427,3 @@ nav .wrapper{
     margin: 0 10px;
     cursor: pointer;
 } */
-

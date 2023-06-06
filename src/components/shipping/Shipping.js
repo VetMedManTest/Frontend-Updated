@@ -19,8 +19,8 @@ const Shipping = () => {
     const {shippingInfo} = useSelector((state) => state.cart)
 
 
-    const [fname, setfname] = useState(shippingInfo.address)
-    const [lname, setlname] = useState(shippingInfo.address)
+    const [fname, setfname] = useState(shippingInfo.fname)
+    const [lname, setlname] = useState(shippingInfo.lname)
     const [address, setAddress] = useState(shippingInfo.address)
     const [OptionalAddress, setOptionalAddress] = useState(shippingInfo.OptionalAddress)
     const [farmAddress, setFarmAddress] = useState(shippingInfo.farmAddress)

@@ -35,7 +35,8 @@ const ContactUs = () => {
                       </p>
                       <h5 className="mt-5 mb-3">Or Contact Us Directly</h5>
                       <p>Phone: 1-800-123-4567</p>
-                      <p>Email: info@vetmedman.com</p>
+                      <p>Mobile: <a href="https://wa.me/919773727759">+91 97737 27759</a></p>
+                      <p>Email: <a href="mailto:vetmedmanhq@gmail.com">vetmedmanhq@gmail.com</a></p>
                     </div>
                   </div>
                 </div>

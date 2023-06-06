@@ -141,9 +141,9 @@ const ProductDetails = () => {
             {/* <h1>{`₹${product.price}`}</h1> */}
             <div className="detailsBlock-3-1">
             <div className="detailsBlock-3-1-1">
-            <Button variant="contained" style={{borderRadius:"50%",backgroundColor:"red"}} onClick={decreaseQuantity}>-</Button>
+            <Button variant="contained" style={{maxWidth: '5vw', maxHeight: '4vh', minWidth: '2vw', minHeight: '2vh',borderRadius:"50%",backgroundColor:"red"}} onClick={decreaseQuantity}>-</Button>
             <input type="number" value={quantity} onChange={(e)=> setQuantity(e.target.value) } />
-            <Button variant="contained" style={{borderRadius:"100%",backgroundColor:"green"}} onClick={increaseQuantity}>+</Button>
+            <Button variant="outlined" style={{maxWidth: '5vw', maxHeight: '4vh', minWidth: '2vw', minHeight: '2vh',borderRadius:"50%",backgroundColor:"green"}} onClick={increaseQuantity}>+</Button>
             </div>
             {product.varieties ? <VarietyModel varietyId={product.varieties}/> :<>
             <Button variant="outlined" style={{textTransform: 'none',marginLeft:"20px",marginTop:"20px"}} onClick={addToCartHandler} disabled={product.Stock < 1 ? true: false}>Add to Cart</Button>
@@ -328,33 +328,20 @@ const ProductDetails = () => {
          <Button onClick={reviewSubmitHandler} color='primary'>Submit</Button>
         </DialogActions>
       </Dialog>
-
-
-{/* accordian */}
-    <div className='all-accordian'>
-      <Accordion className='review-accodian'>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-        >
-          <Typography className='reviewsHeading'>REVIEWS</Typography>
-
-        </AccordionSummary>
-        <AccordionDetails className='review-accordion-details'>
-          {product.reviews && product.reviews[0] ? (
+      <Typography style={{marginLeft:"1vw"}} className='reviewsHeading'>Reviews</Typography>
+      {product.reviews && product.reviews[0] ? (
             <div className="reviews">
               {product.reviews.map((review, i) => (
                 <ReviewCard review={review} key={i} />
               ))}
             </div>
-          ) : (
-            <Typography className="noReviews">
-              No reviews Yet
-            </Typography>
-          )}
-        </AccordionDetails>
-      </Accordion>
-
-
+                ) : (
+                  <Typography className="noReviews">
+                    No reviews Yet
+                  </Typography>
+                )}
+{/* accordian */}
+    <div className='all-accordian'>
 {/* all-faqs-accordian */}
   <div className='faqs-box'>
   {product.faqs && product.faqs[0] ? (

@@ -8,7 +8,6 @@ import {AiOutlineSearch} from 'react-icons/ai'
 const validationSchema = yup.object({
     search: yup
         .string('Enter your search query')
-        .required('Please Enter product name'),
 });
 
 const SearchBar = () => {
@@ -50,8 +49,7 @@ const SearchBar = () => {
             }}>
                 <InputBase
                     sx={{
-                        bgcolor: 'white',
-                        padding: '10px',
+                        bgcolor: 'white'
                     }}
                     fullWidth={true}
                     id="search"
@@ -64,7 +62,7 @@ const SearchBar = () => {
                     error={touched.search && Boolean(errors.search)}
                     inputProps={{
                         style: {
-                          marginLeft: '40px',
+                          marginLeft: '1vw',
                           fontSize: '15px',
                         },
                     }}
@@ -78,7 +76,8 @@ const SearchBar = () => {
                     sx={{
                         backgroundColor: '#3CF300',
                         color: 'black',
-                        minWidth: '80px',
+                        minWidth:'40px',
+                        maxWidth: '80px',
                         borderRadius: 0,
                         '&:hover': {
                             backgroundColor: 'green', 

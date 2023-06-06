@@ -14,26 +14,30 @@ import {
 
 
   // Add to Cart
-  export const addItemsToCart = (id, quantity) => async (dispatch, getState) => {
+  export const addItemsToCart = (id, quantity, userId) => async (dispatch, getState) => {
     const { data } = await axios.get(`${API_URL}/api/v1/product/${id}`);
-
-    const storedVarieties = JSON.parse(localStorage.getItem("VetselectedValues"));
-
+    let storedVarieties = null;
+    // Check if varieties are selected for the product
+    if (data.product.varieties) {
+      storedVarieties = JSON.parse(localStorage.getItem("VetselectedValues"));
+    }
+    let payload = {
+      product: data.product._id,
+      name: data.product.name,
+      image: data.product.images[0].url,
+      stock: data.product.Stock,
+      quantity,
+    };
+    // Check if varieties are selected for the product
+    if (storedVarieties) {
+      payload.varieties = storedVarieties;
+    }
     dispatch({
       type: ADD_TO_CART,
-      payload: {
-        product: data.product._id,
-        name: data.product.name,
-        image: data.product.images[0].url,
-        stock: data.product.Stock,
-        quantity,
-        varieties: storedVarieties,
-      },
+      payload,
     });
-  
     localStorage.setItem("vetcartItems", JSON.stringify(getState().cart.cartItems));
   };
-
 
   // REMOVE FROM CART
 export const removeItemsFromCart = (id) => async (dispatch, getState) => {

@@ -60,10 +60,10 @@ const MedicalCareTile = () => {
                 className="card-img-top"
                 alt={medical.medicalCareName}
               />
-              <div className="card-body d-flex flex-column">
+            </div>
+            <div style={{fontFamily:'Kalam', textAlign: 'center'}} className="card-body d-flex flex-column">
                 <h5 className="card-title" >{medical.medicalCareName}</h5>
               </div>
-            </div>
           </div>
       </Link>
         

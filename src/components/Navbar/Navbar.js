@@ -6,7 +6,7 @@ import { BsFillCartPlusFill } from 'react-icons/bs';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import UserOptions from './UserOptions';
-import Logo from "../../assets/images/Logo.jpeg";
+import Logo from "../../assets/images/Logo.png";
 import { animalTypeLoadAction } from '../../actions/categories/animalTypeAction';
 import { clearErrors, getProduct } from '../../actions/productAction';
 import { useAlert } from 'react-alert';
@@ -62,6 +62,8 @@ const Navbar = () => {
         <Link to='/' className='link'>
         <li><a href="/#home">Home</a></li>
         </Link>
+        <li><a href="/#about">About Us</a></li>
+        <li><a href="/#impact">Impact</a></li>
         <li>
           <a href="/#animals" className="desktop-item">Pet<FaAngleDown  /> </a>
           <input type="checkbox" id="showDrop" />
@@ -121,12 +123,10 @@ const Navbar = () => {
             </div>
           </div>
         </li>
-        <li><a href="/#about">About Us</a></li>
-        <li><a href="/#impact">Impact</a></li>
-        <li><a href="/#contact">Contact Us</a></li>
         <Link to='/products' className='link'>
         <li><a href="/#">Products</a></li>
         </Link>
+        <li><a href="/#contact">Contact Us</a></li>
 
        {
         isAuthenticated ? <UserOptions user={user}/>: 
