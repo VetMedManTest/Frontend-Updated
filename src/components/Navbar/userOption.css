@@ -1,18 +1,20 @@
 .user-options {
-  position: absolute;
-  height: 50px;
-  width: 50px;
-  left: 90vw;
+  position: relative;
+  height: 1vw;
+  width: 1vw;
+  top: 1.5vw;
+  left:0.5vw;
+  /* left: 90vw;
   top: 3.5vh !important;
-  z-index: 0;
+  z-index: 0; */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 970px) {
   .user-options {
-    left: 60vw;
+    left: 10vw;
     height: 2vh;
     width: 2vw;
-    top: 5vh !important; 
+    top: -75vh !important; 
   }
 }
 /* .speedDial {

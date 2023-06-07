@@ -49,7 +49,7 @@ const Navbar = () => {
   return (
     <>
   <div className='navbar' >
-  <nav >
+  <nav>
     <div className="wrapper">
       <div className="logo">
         <a href="/">
@@ -109,7 +109,7 @@ const Navbar = () => {
                 </ul>
               </div>
               <div className="row">
-                <header>DIALY ESSENTIALS</header>
+                <header>DAILY ESSENTIALS</header>
                 <ul className="mega-links">
                 {dailyEssentialType && dailyEssentialType.map(essential => (
             <li key={essential._id}>
@@ -132,16 +132,17 @@ const Navbar = () => {
         isAuthenticated ? <UserOptions user={user}/>: 
         <>
       <Link to='/login' className='link'>
-      <button className='signin'>Signin</button> 
+      <button style={{width:"8vw"}}className='signin'>Signin</button> 
       </Link> 
       </> 
        }
-      </ul>
+      <span className='navbar-cart'>
       <Link to='/cart' className='link'>
-  <BsFillCartPlusFill className='cart-icon'/>
-  <div className="cart-length">{cartItems.length}</div>
-</Link>
-
+      <BsFillCartPlusFill className='cart-icon'/>
+      <div className="cart-length">{cartItems.length}</div>
+      </Link>
+      </span>
+      </ul>
       <label htmlFor="menu-btn" className="btn menu-btn"><GiHamburgerMenu /></label>
     </div>
   </nav>

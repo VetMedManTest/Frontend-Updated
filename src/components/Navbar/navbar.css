@@ -17,7 +17,7 @@ nav{
 nav .wrapper{
   position: relative;
   max-width: 1300px;
-  padding: 0px 30px;
+  padding: 0px 55px;
   height: 50px;
   line-height: 70px;
   margin: auto;
@@ -36,17 +36,15 @@ nav .wrapper{
   width: 10vw;
   height: 9vh;
   margin-top: -4.5vh;
-  margin-left: -6vw;
+  margin-left: -2vw;
 }
 .wrapper .nav-links{
   display: inline-flex;
   gap: 10px;
-  
-
 }
 .nav-links{
  position: relative;
- /* left: -30px; */
+ left: -30px;
 }
 .nav-links li{
   list-style: none;
@@ -54,7 +52,7 @@ nav .wrapper{
 .nav-links li a{
   color: #222;
   text-decoration: none;
-  font-size: 22px;
+  font-size: 1.5vw;
   font-weight: 500;
   padding: 9px 15px;
   border-radius: 5px;
@@ -201,7 +199,7 @@ nav .wrapper{
   color: black;
   font-size: 2.5rem;
   position: relative;
-  top: -5px;
+  /* top: -4px; */
   left: 80px;
 }
 
@@ -219,12 +217,12 @@ nav .wrapper{
   top: -4.5rem;
   right: -6rem;
 }
-/* .navbar-cart{
+.navbar-cart{
   font-size: 43px;
   cursor: pointer;
   position: relative;
-  left: 100px;
-} */
+  left:1vw;
+}
 @media screen and (max-width: 970px) {
     .wrapper .btn{
       display: block;
@@ -253,8 +251,8 @@ nav .wrapper{
       left: 35px;
     }
     .cart-length {
-      left: 3rem;
-      top: -4rem;
+      left: 3.5rem;
+      top: -3.5rem;
     }
     
     /* custom scroll bar */
@@ -367,13 +365,14 @@ nav .wrapper{
       display: flex;
       justify-content: center;
     }
-    /* .navbar-cart{
+    .navbar-cart{
       display: flex;
+      position: absolute;
       justify-content: center;
-      margin-top: -60px;
-      margin-left: 53%;
+      top:1vh;
+      left:15vw;
       font-size: 50px;
-    } */
+    }
     .logo img{
       width: 185px;
       height: 93px;

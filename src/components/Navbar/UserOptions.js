@@ -85,7 +85,7 @@ const UserOptions = ({user}) => {
                 aria-controls="user-options-menu"
                 aria-haspopup="true"
                 color="inherit"
-                style={{ position: 'fixed', top: '16px', right: '16px' }}
+                style={{ position: 'relative' }}
             >
                 <Avatar style={{backgroundColor:'green'}}>{user.name.charAt(0).toUpperCase()}</Avatar>
             </IconButton>
