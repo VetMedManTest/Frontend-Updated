@@ -52,14 +52,13 @@ background: radial-gradient(circle, rgba(140,222,123,1) 13%, rgba(0,212,255,0) 1
 }
 
 .hero-content-inner h1{
-    
 font-family: 'Kalam';
 font-style: normal;
 font-weight: 400;
 font-size: 58px;
 line-height: 92px;
 position: relative;
-top: -250px;
+top: -220px;
 }
 
 .home-btn{

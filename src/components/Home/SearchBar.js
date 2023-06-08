@@ -55,7 +55,7 @@ const SearchBar = () => {
                     id="search"
                     name="search"
                     label="search"
-                    placeholder='Enter product Name'
+                    placeholder='Enter Product Name'
                     value={values.search}
                     onChange={handleChange}
                     onBlur={handleBlur}

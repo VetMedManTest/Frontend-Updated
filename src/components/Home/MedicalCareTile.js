@@ -55,7 +55,7 @@ const MedicalCareTile = () => {
           <Link key={medical._id} className='link' to={`search/medical/${medical._id.toString()}`}>
               <div className="col ">
             <div className="Treatmentcard h-100 m-2">
-              <img
+              <img style={{width:"100%", height:150, padding:20, objectFit:'contain'}}
                 src={medical.imageUrl}
                 className="card-img-top"
                 alt={medical.medicalCareName}
