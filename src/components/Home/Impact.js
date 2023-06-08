@@ -12,44 +12,41 @@ const Impact = () => {
         <div className="col">
           <div className="card card-sm" style={{ height: '100%', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' , fontFamily:'Inter'}}>
             <img
-              src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp"
+              src="https://res.cloudinary.com/djj6woj8s/image/upload/v1686155812/1_ewhrxw.png"
               className="card-img-top"
               alt="Product Quality"
             />
             <div className="card-body">
-              <h5 className="card-title">Uncompromising Product Quality at Vetmedman</h5>
+              <h5 style={{fontFamily:"kalam",fontSize:"20px"}} className="card-title">Uncompromising Product Quality</h5>
               <p className="card-text">
-              At Vetmedman, we prioritize the quality of our products above all else. We follow the strictest standards to ensure that every product in our catalog meets regulatory requirements. Through comprehensive testing, we guarantee the safety and effectiveness of our offerings.
-              </p>
-            </div>
+              Vetmedman prioritizes quality and tests products to ensure safety and effectiveness.</p>            </div>
           </div>
         </div>
         <div className="col">
           <div className="card card-sm" style={{ height: '100%', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' ,fontFamily:'Inter'}}>
             <img
-              src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp"
+              src="https://res.cloudinary.com/djj6woj8s/image/upload/v1686156038/Untitled_design_lae1bo.png"
               className="card-img-top"
               alt="Customer Service"
             />
             <div className="card-body">
-              <h5 className="card-title">Personalized and Unmatched Customer Service</h5>
+              <h5 style={{fontFamily:"kalam",fontSize:"20px"}} className="card-title">Personalized Customer Service</h5>
               <p className="card-text">
-              We understand the importance of building lasting partnerships with our clients at Vetmedman. Our team takes the time to get to know your practice, enabling us to provide tailored recommendations that meet your unique needs. Our staff is always available to assist you with any challenges you may encounter, demonstrating our unwavering commitment to exceptional service.
-              </p>
+              Vetmedman strives to build lasting partnerships with clients by providing tailored recommendations and exceptional services.</p>
             </div>
           </div>
         </div>
         <div className="col">
           <div className="card card-sm" style={{ height: '100%', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',fontFamily:'Inter' }}>
             <img
-              src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp"
+              src="https://res.cloudinary.com/djj6woj8s/image/upload/v1686156596/Untitled_design_1_xbthw8.png"
               className="card-img-top"
               alt="Affordable Excellence in Product Pricing"
             />
             <div className="card-body">
-              <h5 className="card-title">Affordable Excellence in Product Pricing</h5>
+              <h5 style={{fontFamily:"kalam",fontSize:"20px"}} className="card-title">Affordable Pricing</h5>
               <p className="card-text">
-              We are committed to making superior veterinary products accessible to all. We offer a range of competitively priced products without compromising on quality. Our dedication to affordability is matched by our commitment to maintaining the highest standards of service quality. When you choose Vetmedman, you can expect to receive the finest products at an exceptional value.              </p>
+              Vetmedman is committed to providing superior veterinary products at an affordable price, while maintaining the highest standards of service quality.</p>
             </div>
           </div>
         </div>

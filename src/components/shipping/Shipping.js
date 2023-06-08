@@ -23,6 +23,7 @@ const Shipping = () => {
     const [lname, setlname] = useState(shippingInfo.lname)
     const [address, setAddress] = useState(shippingInfo.address)
     const [OptionalAddress, setOptionalAddress] = useState(shippingInfo.OptionalAddress)
+    const [officialEmialId, setofficialEmialId] = useState(shippingInfo.officialEmialId)
     const [farmAddress, setFarmAddress] = useState(shippingInfo.farmAddress)
     const [city, setCity] = useState(shippingInfo.city);
     const [state, setState] = useState(shippingInfo.state);
@@ -38,7 +39,7 @@ const Shipping = () => {
           return;
         }
         dispatch(
-          saveShippingInfo({fname,lname, address,OptionalAddress,farmAddress, city, state, country, pinCode, phoneNo })
+          saveShippingInfo({fname,lname, address,OptionalAddress,officialEmialId,farmAddress, city, state, country, pinCode, phoneNo })
         );
            //navigate("/order/confirm");
            navigate("/billing/address")
@@ -79,7 +80,7 @@ const Shipping = () => {
             <div>
               <input
                 type="text"
-                placeholder="Address (Required)"
+                placeholder="Office Address (Required)"
                 required
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
@@ -88,9 +89,17 @@ const Shipping = () => {
             <div>
               <input
                 type="text"
-                placeholder="Address (Optional)"
+                placeholder="warehouse Address (Optional)"
                 value={OptionalAddress}
                 onChange={(e) => setOptionalAddress(e.target.value)}
+              />
+            </div>
+            <div>
+              <input
+                type="email"
+                placeholder="Official Emailid"
+                value={officialEmialId}
+                onChange={(e) => setofficialEmialId(e.target.value)}
               />
             </div>
             <div>

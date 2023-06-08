@@ -11,7 +11,7 @@ const ContactUs = () => {
                 <div className="row">
                   <div className="col-md-6">
                     <img
-                      src={'https://hips.hearstapps.com/hmg-prod/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=0.752xw:1.00xh;0.175xw,0&resize=1200:*'}
+                      src={'https://res.cloudinary.com/djj6woj8s/image/upload/v1686209248/Contact_Us_cmvf44.svg'}
                       alt="contactUs"
                       style={{ maxWidth: "100%" }}
                     />
@@ -19,13 +19,9 @@ const ContactUs = () => {
                   <div className="col-md-6 mb-4 mr-4">
                     <div>
                       <img src={Logo} alt="logo" style={{ width: "185px" }} />
-                      <h1 className="mt-3 mb-5 pb-1">CONTACT US</h1>
-                      <p>
-                        Our company is dedicated to providing excellent customer
-                        service and support. If you have any questions, comments
-                        or concerns about our products or services, please
-                        contact us using the information below.
-                      </p>
+                      <h1 className="mt-3 mb-5 pb-1">Contact Us</h1>
+                      <p><i class="bi bi-whatsapp" style={{paddingRight:"5px", color:"green"}}></i>Mobile Number:<a href="https://wa.me/919773727759"> +91 97737 27759</a></p>
+                      <p><i class="bi bi-envelope-at" style={{paddingRight:"5px", color:"red"}}></i>Email : <a href="mailto:vetmedmanhq@gmail.com">vetmedmanhq@gmail.com</a></p>
                       <p>
                         Our customer service team is available every day from 9
                         am to 6 pm to answer any queries. We value your feedback
@@ -33,10 +29,6 @@ const ContactUs = () => {
                         service. Any queries will be answered within 24-48 hours
                         on working business days.
                       </p>
-                      <h5 className="mt-5 mb-3">Or Contact Us Directly</h5>
-                      <p>Phone: 1-800-123-4567</p>
-                      <p>Mobile: <a href="https://wa.me/919773727759">+91 97737 27759</a></p>
-                      <p>Email: <a href="mailto:vetmedmanhq@gmail.com">vetmedmanhq@gmail.com</a></p>
                     </div>
                   </div>
                 </div>

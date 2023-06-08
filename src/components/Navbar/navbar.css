@@ -17,7 +17,7 @@ nav{
 nav .wrapper{
   position: relative;
   max-width: 1300px;
-  padding: 0px 55px;
+  padding: 0px 70px;
   height: 50px;
   line-height: 70px;
   margin: auto;
@@ -40,7 +40,7 @@ nav .wrapper{
 }
 .wrapper .nav-links{
   display: inline-flex;
-  gap: 10px;
+  gap: 2px;
 }
 .nav-links{
  position: relative;
@@ -189,8 +189,8 @@ nav .wrapper{
     border: none;
     height: 50px;
     border-radius: 30px;
-    padding: 0px 10px;
-    width: 10vw;
+    padding: 0px 2px;
+    width: 8vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -221,7 +221,7 @@ nav .wrapper{
   font-size: 43px;
   cursor: pointer;
   position: relative;
-  left:1vw;
+  left:-0.5vw;
 }
 @media screen and (max-width: 970px) {
     .wrapper .btn{
@@ -293,11 +293,13 @@ nav .wrapper{
       overflow: hidden;
       box-shadow: none;
       transition: all 0.3s ease;
+      display: none;
     }
     
     #showDrop:checked ~ .drop-menu,
     #showMega:checked ~ .mega-box{
       max-height: 100%;
+      display: block;
     }
     .nav-links .desktop-item{
       display: none;

@@ -94,7 +94,7 @@ const alert = useAlert();
     <h2>Variety Details</h2>
     <FormControl>
     {Object.entries(variety).map(([key, values]) => {
-      if (Array.isArray(values)) {
+      if (Array.isArray(values)&& values.length > 0) {
         return (
           <div className="section" key={key}>
             <h6>{key}</h6>
@@ -121,6 +121,7 @@ const alert = useAlert();
       }
     })}
     </FormControl>
+    <br/>
     <Button onClick={handleFormSubmit}>Submit</Button>
   </div>
 </Modal>

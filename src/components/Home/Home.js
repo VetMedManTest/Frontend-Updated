@@ -36,20 +36,19 @@ const Home = () => {
         <div className='hero-image'>
         <div className='hero-content'>
             <div className='hero-content-inner'>
-                <p>All in one place</p>
                 <h1>The best place to buy supplies for your pets</h1>
                 <Link to='/products'>
-                <button className='home-btn' type="button">EXPLORE <MdKeyboardDoubleArrowRight /></button>
+                <button className='home-btn' type="button">Our Products <MdKeyboardDoubleArrowRight /></button>
                 </Link>
             </div>
         </div>
     </div>
       </div>
+            <About />
       <Animal />
       <TreatmentTile />
       <EssentialTile />
       <MedicalCareTile />
-      <About />
       <Impact />
       <ContactUs />
     </section>

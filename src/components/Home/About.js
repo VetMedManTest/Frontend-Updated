@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "../../assets/images/Logo.png";
-
+import './about.css'
 const About = () => {
   return (
     <section id="about" className="h-100 gradient-form">
@@ -17,7 +17,7 @@ const About = () => {
                         alt="Vetmedman Logo"
                         style={{ width: "185px" }}
                       />
-                      <h1 className="mt-3 mb-5 pb-1">ABOUT US</h1>
+                      <h1 className="mt-3 mb-5 pb-1">About Us</h1>
                     </div>
                     <p className="lead mb-4">
                       Are you someone who works with animals and related
@@ -35,19 +35,12 @@ const About = () => {
                       services tailored to meet the unique needs of each
                       customer.
                     </p>
-                    <p className="mb-5">
-                      Whether you're looking for a specific product or need help
-                      improving treatment outcomes, our experienced team is here
-                      to help. Browse our website to learn more about our
-                      products and services, or contact us to speak with a
-                      member of our team.
-                    </p>
                     <div className="text-center">
                       <a
                         href="/products"
                         className="btn btn-lg btn-primary px-5"
                       >
-                        Browse Products
+                        Our Products
                       </a>
                     </div>
                   </div>

@@ -11,10 +11,11 @@
 
 @media (max-width: 970px) {
   .user-options {
-    left: 10vw;
+    position:absolute;
+    left: 5vw;
     height: 2vh;
     width: 2vw;
-    top: -75vh !important; 
+    top: -4vh;
   }
 }
 /* .speedDial {

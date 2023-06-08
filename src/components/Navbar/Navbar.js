@@ -14,13 +14,23 @@ import { treatmentTypeLoadAction } from '../../actions/categories/treatmentTypeA
 import { dailyEssentialsTypeLoadAction } from '../../actions/categories/dailyEssentialTypeAction';
 import { medicalCareTypeLoadAction } from '../../actions/categories/medicalCareTypeAction';
 import { FaAngleDown } from 'react-icons/fa';
-
+import { useState } from 'react';
 const Navbar = () => {
 
   const { isAuthenticated,user } = useSelector(state=>state.user)
   const dispatch = useDispatch();
   const alert = useAlert();
-
+  const [width, setWidth] = useState(window.innerWidth);
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+}
+useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+        window.removeEventListener('resize', handleWindowSizeChange);
+    }
+}, []);
+const isMobile = width <= 970;
   const {animalType} = useSelector(state=>state.animalTypeAll)
   const { animal,treatment,essential,medical} = useParams()
   const {error} = useSelector(state=>state.products)
@@ -58,6 +68,7 @@ const Navbar = () => {
       <input type="radio" name="slider" id="menu-btn" />
       <input type="radio" name="slider" id="close-btn" />
       <ul className="nav-links">
+        {isMobile&&isAuthenticated?<UserOptions user={user}/>:<></>}
         <label htmlFor="close-btn" className="btn close-btn"><RxCross1 /></label>
         <Link to='/' className='link'>
         <li><a href="/#home">Home</a></li>
@@ -65,9 +76,9 @@ const Navbar = () => {
         <li><a href="/#about">About Us</a></li>
         <li><a href="/#impact">Impact</a></li>
         <li>
-          <a href="/#animals" className="desktop-item">Pet<FaAngleDown  /> </a>
+          <a href="/#animals" className="desktop-item">Pet<FaAngleDown/> </a>
           <input type="checkbox" id="showDrop" />
-          <label htmlFor="showDrop" className="mobile-item">Pet<FaAngleDown style={{ color: 'rgba(0, 0, 0, 0.6)' }}/></label>
+          <label htmlFor="showDrop" className="mobile-item">Pet<FaAngleDown/></label>
           <ul className="drop-menu">
           {animalType && animalType.map(animal => (
         <li key={animal._id}>
@@ -129,13 +140,14 @@ const Navbar = () => {
         <li><a href="/#contact">Contact Us</a></li>
 
        {
-        isAuthenticated ? <UserOptions user={user}/>: 
+        isAuthenticated && !isMobile ?<UserOptions user={user}/>:<></>}
+        {!isAuthenticated?
         <>
       <Link to='/login' className='link'>
-      <button style={{width:"8vw"}}className='signin'>Signin</button> 
+      <button className='signin'>Signin</button> 
       </Link> 
       </> 
-       }
+        :<></>}
       <span className='navbar-cart'>
       <Link to='/cart' className='link'>
       <BsFillCartPlusFill className='cart-icon'/>

@@ -163,7 +163,7 @@ const ProductDetails = () => {
         <div className='detailsBlock-6'>
         <p className="no-margin">Shelf Life - {product.shelflife}</p>
         <p className="no-margin">Guarantee - {product.guarantee} years</p>
-      </div>
+        </div>
         <Card className="card-detailsBlock-5">
         <b>Key Features</b>
         <ul>

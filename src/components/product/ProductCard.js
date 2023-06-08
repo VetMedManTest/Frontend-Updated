@@ -23,7 +23,6 @@ const ProductCard = ({ product }) => {
         {/* <div className="product-price">Price: ₹{product.price}</div> */}
         <div className="product-size">Size: {product.size_of_instrument.join(', ')}</div>
         <div className="product-stage">Stage: {product.stage}</div>
-        <div className="product-condition">Condition: {product.condition}</div>
     </div>
         <Rating className='product-rating ' {...options} /><span className='noOfReviews'>({product.numOfReviews} Reviews)</span>
         <IconButton aria-label="add to favorites">
