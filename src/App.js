@@ -23,7 +23,6 @@ import MyOrders from './components/orders/MyOrders';
 import OrderDetails from './components/orders/OrderDetails';
 import BillingAddress from './components/shipping/BillingAddress';
 import ScrollToTop from './scrollToTop';
-import ResponsiveAppBar from './components/Navbar/newnavbar';
 const ProtectedRoute = ({children}) => {
   const { isAuthenticated} = useSelector((state)=>state.user);
   if(!isAuthenticated ){
