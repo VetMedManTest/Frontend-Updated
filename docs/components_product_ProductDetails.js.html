@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/product/ProductDetails.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/product/ProductDetails.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { clearErrors, getProductDetails, newReview } from '../../actions/productAction'
+import {  useParams } from 'react-router-dom';
+import './productdetail.css'
+import MetaData from '../MetaData';
+import Carousel from 'react-material-ui-carousel'
+import { Card, Rating } from '@mui/material';
+import ReviewCard from './ReviewCard';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Loader from '../layout/Loader/Loader';
+import { useAlert } from 'react-alert';
+import { addItemsToCart } from '../../actions/cartAction';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Button,
+} from "@material-ui/core";
+import { NEW_REVIEW_RESET } from '../../constants/productConstants';
+import VarietyModel from './VarietyModel'
+
+/**
+ * ProductDetails component displays the details of a product.
+ * It includes the product name, rating, description, features, reviews, and FAQs.
+ */
+const ProductDetails = () => {
+
+    const { id } = useParams();
+    const dispatch = useDispatch()
+    const { product, loading, error } = useSelector(
+        (state) => state.productDetails
+      );
+    const alert = useAlert();
+    //const { isAuthenticated} = useSelector((state)=>state.user);
+    //const navigate = useNavigate()
+
+ 
+    const { success, error: reviewError } = useSelector(
+      (state) => state.newReview
+    );
+    const options = {
+        size: "large",
+        value: product.ratings,
+        readOnly: true,
+        precision: 0.5,
+      };
+      
+      const [quantity, setQuantity] = useState(1);
+      const [open, setOpen] = useState(false);
+      const [rating, setRating] = useState(0);
+      const [comment, setComment] = useState("");
+      
+
+      const increaseQuantity = () =>{
+        if(product.Stock &lt;= quantity) return
+    
+        const qty = quantity + 1;
+        setQuantity(qty);
+      }
+      const decreaseQuantity = () =>{
+        if(1 >= quantity) return
+    
+        const qty = quantity - 1;
+        setQuantity(qty);
+      }
+
+      const addToCartHandler = () =>{
+
+          dispatch(addItemsToCart(id,quantity));
+        alert.success("Item Added to cart");
+      
+      }
+
+      const submitReviewToggle = () =>{
+        open ? setOpen(false) : setOpen(true);
+      }
+      const reviewSubmitHandler = () =>{
+        const myForm = new FormData();
+    
+        myForm.set("rating", rating);
+        myForm.set("comment",comment);
+        myForm.set("productId", id);
+    
+        dispatch(newReview(myForm));
+        setOpen(false)
+    
+      }
+
+      useEffect(()=>{
+        if(error){
+          alert.error(error)
+          dispatch(clearErrors())
+        }
+        if(reviewError){
+          alert.error(reviewError)
+          dispatch(clearErrors())
+         }
+         if(success){
+          alert.success("Review Submitted Successfully");
+          dispatch({type: NEW_REVIEW_RESET})
+         }
+  
+          dispatch(getProductDetails(id))
+      },[dispatch,id,error,alert,success,reviewError])
+  
+  return (
+  &lt;>
+  {
+    loading ? &lt;Loader />:
+    &lt;>
+
+
+    &lt;MetaData title={product.name} />
+    &lt;div className="ProductDetails">
+    &lt;div className='Container'>
+                  &lt;Carousel  className='carousel'>
+                    {product.images &amp;&amp;
+                      product.images.map((item, i) => (
+                        &lt;img
+                          className="CarouselImage"
+                          key={i}
+                          src={item.url}
+                          alt={`${i} Slide`}
+                        />
+                      ))}
+                  &lt;/Carousel>
+                &lt;/div>
+                &lt;div className='MainDetailContainer'>
+            &lt;div className="detailsBlock-1">
+                &lt;h2>{product.name}&lt;/h2>
+            &lt;/div>
+            &lt;div className='detailsBlock-2'>
+                &lt;Rating {...options} />
+                &lt;span className='detailssBlock-2'>({product.numOfReviews} Reviews)&lt;/span>
+            &lt;/div>
+            &lt;div className="detailsBlock-3">
+            {/* &lt;h1>{`₹${product.price}`}&lt;/h1> */}
+            &lt;div className="detailsBlock-3-1">
+            &lt;div className="detailsBlock-3-1-1">
+            &lt;Button variant="contained" style={{maxWidth: '5vw', maxHeight: '4vh', minWidth: '2vw', minHeight: '2vh',borderRadius:"50%",backgroundColor:"red"}} onClick={decreaseQuantity}>-&lt;/Button>
+            &lt;input type="number" value={quantity} onChange={(e)=> setQuantity(e.target.value) } />
+            &lt;Button variant="outlined" style={{maxWidth: '5vw', maxHeight: '4vh', minWidth: '2vw', minHeight: '2vh',borderRadius:"50%",backgroundColor:"green"}} onClick={increaseQuantity}>+&lt;/Button>
+            &lt;/div>
+            {product.varieties ? &lt;VarietyModel varietyId={product.varieties}/> :&lt;>
+            &lt;Button variant="outlined" style={{textTransform: 'none',marginLeft:"20px",marginTop:"20px"}} onClick={addToCartHandler} disabled={product.Stock &lt; 1 ? true: false}>Add to Cart&lt;/Button>
+            &lt;/>}
+            &lt;/div>
+    
+            &lt;p>
+            Availability:{" "}
+            &lt;b className={product.Stock &lt; 1 ? "redColor" : "greenColor"}>
+               {product.Stock} Products {product.Stock &lt; 1 ? "Out Of Stock" : "In Stock"}
+            &lt;/b>
+            &lt;/p>
+        &lt;/div>
+        &lt;div className="detailsBlock-4">
+            Description : &lt;p style={{marginRight:"15vw"}}>{product.description}&lt;/p>
+        &lt;/div>
+        &lt;div className='detailsBlock-6'>
+        &lt;p className="no-margin">Shelf Life - {product.shelflife}&lt;/p>
+        &lt;p className="no-margin">Guarantee - {product.guarantee} years&lt;/p>
+        &lt;/div>
+        &lt;Card className="card-detailsBlock-5">
+        &lt;b>Key Features&lt;/b>
+        &lt;ul>
+        {product.brand &amp;&amp; product.brand.trim() !== '' &amp;&amp; (
+        &lt;li>
+          &lt;p>Brand - {product.brand}&lt;/p>
+        &lt;/li>
+          )}
+        {product.material_used &amp;&amp; product.material_used.trim() !== '' &amp;&amp; (
+        &lt;li>
+          &lt;p>Material Used - {product.material_used}&lt;/p>
+        &lt;/li>
+          )}
+  {product.color &amp;&amp; !(product.color.includes("")) &amp;&amp; (
+  &lt;li>
+    &lt;p>Color - {product.color.toString()}&lt;/p>
+  &lt;/li>
+  )}
+  {product.size_of_instrument &amp;&amp; !(product.size_of_instrument.includes("")) &amp;&amp; (
+  &lt;li>
+    &lt;p>Size of instrument - {product.size_of_instrument.toString()}&lt;/p>
+  &lt;/li>
+  )}
+      {product.model_number &amp;&amp;  product.model_number.trim() !== '' &amp;&amp;(
+      &lt;li>
+        &lt;p>Model Number - {product.model_number}&lt;/p>
+      &lt;/li>
+    )}
+    {product.stage &amp;&amp;  product.stage.trim() !== '' &amp;&amp;(
+    &lt;li>
+      &lt;p>Stage - {product.stage}&lt;/p>
+    &lt;/li>
+    )}
+  {product.condition &amp;&amp; product.condition.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>Condition - {product.condition}&lt;/p>
+  &lt;/li>
+  )}
+  {product.specific_feature &amp;&amp; product.specific_feature.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>Specific Feature - {product.specific_feature}&lt;/p>
+  &lt;/li>
+  )}
+  {product.packaging_dimensions &amp;&amp; product.packaging_dimensions.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>Packaging Dimension - {product.packaging_dimensions}&lt;/p>
+  &lt;/li>
+  )}
+  {product.mode_of_administration &amp;&amp; product.mode_of_administration.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>Mode of Administration - {product.mode_of_administration}&lt;/p>
+  &lt;/li>
+  )}
+  {product.caution &amp;&amp; product.caution.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>Caution - {product.caution}&lt;/p>
+  &lt;/li>
+  )}
+  {product.weight_of_the_commodity &amp;&amp; product.weight_of_the_commodity.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>Weight of Commodity - {product.weight_of_the_commodity}&lt;/p>
+  &lt;/li>
+  )}
+    {product.dimension_of_the_product &amp;&amp; product.dimension_of_the_product.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>Product Dimensions - {product.dimension_of_the_product}&lt;/p>
+  &lt;/li>
+  )}
+
+    {product.MOQ &amp;&amp; product.MOQ.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>Minimum Order Quantity - {product.MOQ}&lt;/p>
+  &lt;/li>
+  )}
+  {product.dosage_recommended &amp;&amp; product.dosage_recommended.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>Recommended Dosage - {product.dosage_recommended}&lt;/p>
+  &lt;/li>
+  )}
+    {product.active_ingredients &amp;&amp; product.active_ingredients.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>Active Ingredients - {product.active_ingredients}&lt;/p>
+  &lt;/li>
+  )}
+      {product.fast_moving_spare_parts &amp;&amp; product.fast_moving_spare_parts.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>Fast Moving Spare parts - {product.fast_moving_spare_parts}&lt;/p>
+  &lt;/li>
+  )}
+    {product.country_of_manufacture &amp;&amp; product.country_of_manufacture.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>Country of Manufacture - {product.country_of_manufacture}&lt;/p>
+  &lt;/li>
+  )}
+     {product.lead_time_to_deliver &amp;&amp; product.lead_time_to_deliver.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>Lead Time to Deliver - {product.lead_time_to_deliver}&lt;/p>
+  &lt;/li>
+  )}
+    {product.fda_or_certified &amp;&amp; product.fda_or_certified.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>FDA or Certified - {product.fda_or_certified}&lt;/p>
+  &lt;/li>
+  )}
+    {product.total_primary_packet &amp;&amp; product.total_primary_packet.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>Total Primary Packet - {product.total_primary_packet}&lt;/p>
+  &lt;/li>
+  )}
+    {product.primary_packing_Single_hand &amp;&amp; product.primary_packing_Single_hand.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>Single hand Primary packing - {product.primary_packing_Single_hand}&lt;/p>
+  &lt;/li>
+  )}
+    {product.prior_prophylactic_preparation &amp;&amp; product.prior_prophylactic_preparation.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>Prior Prophylactic Preparation - {product.prior_prophylactic_preparation}&lt;/p>
+  &lt;/li>
+  )}
+  {product.shelflife &amp;&amp; product.shelflife.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>Shelf Life - {product.shelflife}&lt;/p>
+  &lt;/li>
+  )}
+  {product.lab_instruments &amp;&amp; product.lab_instruments.trim() !== '' &amp;&amp; (
+  &lt;li>
+    &lt;p>Lab Instruments - {product.lab_instruments}&lt;/p>
+  &lt;/li>
+  )}
+        &lt;/ul>      
+        &lt;/Card>
+  
+        &lt;button onClick={submitReviewToggle} className="submitReview">
+                    Submit Review
+        &lt;/button>
+        &lt;/div>
+    &lt;/div>
+    &lt;Dialog
+        aria-labelledby='simple-dialog-title'
+        open={open}
+        onClose={submitReviewToggle}
+      >
+        &lt;DialogTitle>Submit Review&lt;/DialogTitle>
+         &lt;DialogContent className='submitDialog'>
+         &lt;Rating
+          onChange={(e)=> setRating(e.target.value)}
+          value={Number(rating)}
+          size="large"
+            />
+
+            &lt;textarea
+            className='submitDialogTextArea'
+            cols="30"
+            rows="5"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+              >&lt;/textarea>
+         
+         &lt;/DialogContent>
+        &lt;DialogActions>
+        &lt;Button onClick={submitReviewToggle} color='secondary'>Cancle&lt;/Button>
+         &lt;Button onClick={reviewSubmitHandler} color='primary'>Submit&lt;/Button>
+        &lt;/DialogActions>
+      &lt;/Dialog>
+      &lt;Typography style={{marginLeft:"1vw"}} className='reviewsHeading'>Reviews&lt;/Typography>
+      {product.reviews &amp;&amp; product.reviews[0] ? (
+            &lt;div className="reviews">
+              {product.reviews.map((review, i) => (
+                &lt;ReviewCard review={review} key={i} />
+              ))}
+            &lt;/div>
+                ) : (
+                  &lt;Typography className="noReviews">
+                    No reviews Yet
+                  &lt;/Typography>
+                )}
+{/* accordian */}
+    &lt;div className='all-accordian'>
+{/* all-faqs-accordian */}
+  &lt;div className='faqs-box'>
+  {product.faqs &amp;&amp; product.faqs[0] ? (
+    &lt;div className="faq">
+      {product.faqs.map((faq, i) => (
+        &lt;Accordion key={i} className='faq-accordian'>
+          &lt;AccordionSummary
+            expandIcon={&lt;ExpandMoreIcon />}
+            aria-controls={`panel${i}-content`}
+            id={`panel${i}-header`}
+          >
+            &lt;Typography className='faqs'>{faq.question}&lt;/Typography>
+          &lt;/AccordionSummary>
+          &lt;AccordionDetails>
+            &lt;Typography className='faq-answer'>{faq.answer}&lt;/Typography>
+          &lt;/AccordionDetails>
+        &lt;/Accordion>
+      ))}
+    &lt;/div>
+  ) : (
+    &lt;Typography className="noReviews">
+      No FAQs Yet
+    &lt;/Typography>
+  )}
+&lt;/div>
+
+  &lt;/div>
+    &lt;/>
+  }
+  &lt;/>
+    
+  )
+
+}
+
+export default ProductDetails
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-animalTypeLoadAction.html">animalTypeLoadAction</a></li><li><a href="module-index.html">index</a></li></ul><h3>Classes</h3><ul><li><a href="About.html">About</a></li><li><a href="Animal.html">Animal</a></li><li><a href="Cart.html">Cart</a></li><li><a href="CartItemCard.html">CartItemCard</a></li><li><a href="ContactUs.html">ContactUs</a></li><li><a href="EssentialTile.html">EssentialTile</a></li><li><a href="Home.html">Home</a></li><li><a href="MedicalCareTile.html">MedicalCareTile</a></li><li><a href="MyOrders.html">MyOrders</a></li><li><a href="OrderDetails.html">OrderDetails</a></li><li><a href="SearchBar.html">SearchBar</a></li><li><a href="TreatmentTile.html">TreatmentTile</a></li><li><a href="UserOptions.html">UserOptions</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#ForgotPassword">ForgotPassword</a></li><li><a href="global.html#LoadUser">LoadUser</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#MetaData">MetaData</a></li><li><a href="global.html#ProductCard">ProductCard</a></li><li><a href="global.html#ProductDetails">ProductDetails</a></li><li><a href="global.html#Profile">Profile</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#ReviewCard">ReviewCard</a></li><li><a href="global.html#Shipping">Shipping</a></li><li><a href="global.html#Success">Success</a></li><li><a href="global.html#UpdatePassword">UpdatePassword</a></li><li><a href="global.html#VarietyModel">VarietyModel</a></li><li><a href="global.html#addItemsToCart">addItemsToCart</a></li><li><a href="global.html#clearErrors">clearErrors</a></li><li><a href="global.html#createOrder">createOrder</a></li><li><a href="global.html#createProduct">createProduct</a></li><li><a href="global.html#dailyEssentialsTypeLoadAction">dailyEssentialsTypeLoadAction</a></li><li><a href="global.html#deleteProduct">deleteProduct</a></li><li><a href="global.html#forgotPassword">forgotPassword</a></li><li><a href="global.html#getAdminProduct">getAdminProduct</a></li><li><a href="global.html#getOrderDetails">getOrderDetails</a></li><li><a href="global.html#getProduct">getProduct</a></li><li><a href="global.html#getProductDetails">getProductDetails</a></li><li><a href="global.html#getVarietyDetails">getVarietyDetails</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#medicalCareTypeLoadAction">medicalCareTypeLoadAction</a></li><li><a href="global.html#myOrders">myOrders</a></li><li><a href="global.html#newReview">newReview</a></li><li><a href="global.html#reducer">reducer</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#removeItemsFromCart">removeItemsFromCart</a></li><li><a href="global.html#resetCart">resetCart</a></li><li><a href="global.html#resetPassword">resetPassword</a></li><li><a href="global.html#saveBillingInfo">saveBillingInfo</a></li><li><a href="global.html#saveShippingInfo">saveShippingInfo</a></li><li><a href="global.html#store">store</a></li><li><a href="global.html#treatmentTypeLoadAction">treatmentTypeLoadAction</a></li><li><a href="global.html#updatePassword">updatePassword</a></li><li><a href="global.html#updateProduct">updateProduct</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 12 2023 06:27:07 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

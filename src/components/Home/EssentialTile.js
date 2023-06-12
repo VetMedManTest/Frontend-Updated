@@ -7,6 +7,15 @@ import './treatmentTile.css'
 import { dailyEssentialsTypeLoadAction } from '../../actions/categories/dailyEssentialTypeAction'
 import Loader from '../layout/Loader/Loader'
 
+
+/**
+ * EssentialTile component displays daily essential items.
+ *
+ * @component
+ * @returns {JSX.Element} - The EssentialTile component.
+ */
+
+
 const EssentialTile = () => {
 
     const { dailyEssentialType, loading } = useSelector(state => state.dailyEssentialTypeAll)

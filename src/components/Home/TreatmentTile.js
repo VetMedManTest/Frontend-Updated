@@ -7,6 +7,14 @@ import { Link, useParams } from 'react-router-dom'
 import './treatmentTile.css'
 import Loader from '../layout/Loader/Loader'
 
+/**
+ * TreatmentTile component displays a list of treatment types.
+ *
+ * @component
+ * @returns {JSX.Element} - The TreatmentTile component.
+ */
+
+
 const TreatmentTile = () => {
 
   const { treatmentType,loading } = useSelector(state => state.treatmentTypeAll)

@@ -25,9 +25,11 @@ import {
 import { NEW_REVIEW_RESET } from '../../constants/productConstants';
 import VarietyModel from './VarietyModel'
 
-
+/**
+ * ProductDetails component displays the details of a product.
+ * It includes the product name, rating, description, features, reviews, and FAQs.
+ */
 const ProductDetails = () => {
-   
 
     const { id } = useParams();
     const dispatch = useDispatch()

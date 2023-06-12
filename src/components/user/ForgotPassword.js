@@ -7,6 +7,11 @@ import Loader from '../layout/Loader/Loader';
 import MetaData from '../MetaData';
 import { clearErrors, forgotPassword } from '../../actions/userAction';
 
+/**
+ * ForgotPassword component allows users to reset their password by providing their email address.
+ *
+ * @returns {JSX.Element} The rendered ForgotPassword component.
+ */
 const ForgotPassword = () => {
     const dispatch = useDispatch();
     const alert = useAlert();

@@ -1,3 +1,9 @@
+/**
+ * Entry point of the application.
+ * Renders the main App component within the Redux store and React Alert Provider.
+ * @module index
+ */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -14,7 +20,10 @@ const options ={
   transition:transitions.SCALE
 }
 
-
+/**
+ * Render the main App component within the Redux store and React Alert Provider.
+ * @function render
+ */
 ReactDOM.render(
   <Provider store={store}>
     <AlertProvider template={AlertTemplate} {...options}>

@@ -10,6 +10,14 @@ import MetaData from '../MetaData'
 import { clearErrors, myOrders } from '../../actions/orderAction';
 import Loader from '../layout/Loader/Loader'
 
+
+/**
+ * MyOrders component displays a table of user orders.
+ *
+ * @component
+ * @returns {JSX.Element} - The MyOrders component.
+ */
+
 const MyOrders = () => {
 
 
@@ -41,14 +49,6 @@ const MyOrders = () => {
       minWidth: 150,
       flex: 0.3,
     },
-
-    // {
-    //   field: "amount",
-    //   headerName: "Amount",
-    //   type: "number",
-    //   minWidth: 270,
-    //   flex: 0.5,
-    // },
 
     {
       field: "actions",

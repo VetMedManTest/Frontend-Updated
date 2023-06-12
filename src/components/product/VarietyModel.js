@@ -8,6 +8,13 @@ import { useParams } from 'react-router-dom';
 import { useAlert } from 'react-alert';
 import './varietyModel.css'
 
+/**
+ * VarietyModel component displays the details and selection options for a variety.
+ *
+ * @param {string} varietyId - The ID of the variety.
+ * @returns {JSX.Element} The rendered VarietyModel component.
+ */
+
 const VarietyModel = ({ varietyId }) => {
   const dispatch = useDispatch();
   const { loading, variety, error } = useSelector((state) => state.varietyDetails);

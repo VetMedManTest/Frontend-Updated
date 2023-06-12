@@ -11,6 +11,9 @@ import { cartReducer } from './reducers/cartReducer';
 import { myOrdersReducer, newOrderReducer, orderDetailsReducer } from './reducers/orderReducer';
 import varietyReducer from './reducers/varietiesReducer';
 
+/**
+ * Root reducer that combines all the reducers.
+ */
 
 //combine reducers
 const reducer = combineReducers({
@@ -48,6 +51,9 @@ let initialState = {
   },
 };
 const middleware = [thunk];
+/**
+ * Redux store creation.
+ */
 const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(...middleware)))
 
 export default store;

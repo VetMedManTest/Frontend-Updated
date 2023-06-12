@@ -30,10 +30,18 @@ const ProtectedRoute = ({children}) => {
   }
   return children
 }
+/**
+ * The main component of the application.
+ * @returns {JSX.Element} The rendered App component.
+ */
 
 function App() {
 
-  store.dispatch(LoadUser())
+    /**
+   * Load user data on component mount.
+   */
+    store.dispatch(LoadUser());
+
 
   return (
     <>
@@ -51,37 +59,65 @@ function App() {
         <Route path='/cart' element={<Cart /> }/>
         <Route path='/orders' element={<MyOrders /> }/>
 
-        <Route path='/profile' element={   
+        <Route path='/profile' element={  
+           /**
+               * Protected route for user profile.
+               * @returns {JSX.Element} The rendered Profile component.
+           */ 
            <ProtectedRoute>
             <Profile />
           </ProtectedRoute>} 
           />
         <Route path='/shipping' element={   
+            /**
+               * Protected route for shipping details.
+               * @returns {JSX.Element} The rendered Shipping component.
+            */
            <ProtectedRoute>
             <Shipping />
           </ProtectedRoute>} 
           />
-        <Route path='/billing/address' element={   
+        <Route path='/billing/address' element={  
+           /**
+               * Protected route for billing address.
+               * @returns {JSX.Element} The rendered BillingAddress component.
+            */ 
            <ProtectedRoute>
             <BillingAddress />
           </ProtectedRoute>} 
           />
         <Route path='/order/confirm' element={   
+           /**
+               * Protected route for order confirmation.
+               * @returns {JSX.Element} The rendered ConfirmOrder component.
+            */
            <ProtectedRoute>
             <ConfirmOrder />
           </ProtectedRoute>} 
           />
-        <Route path='/success' element={   
+        <Route path='/success' element={ 
+           /**
+               * Route for success page.
+               * @returns {JSX.Element} The rendered Success component.
+            */  
             <Success />
         } 
           />
-            <Route path='/order/:id' element={   
+            <Route path='/order/:id' element={ 
+               /**
+               * Protected route for order details.
+               * @returns {JSX.Element} The rendered OrderDetails component.
+               */  
            <ProtectedRoute>
             <OrderDetails />
           </ProtectedRoute>} 
           />
 
-        <Route path='/password/update' element={   
+        <Route path='/password/update' element={  
+               /**
+               * Protected route for updating password.
+               * @returns {JSX.Element} The rendered UpdatePassword component.
+               */ 
            <ProtectedRoute>
             <UpdatePassword />
           </ProtectedRoute>} 

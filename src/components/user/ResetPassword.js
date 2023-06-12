@@ -9,6 +9,13 @@ import Loader from '../layout/Loader/Loader';
 import MetaData from '../MetaData';
 import { clearErrors, resetPassword } from '../../actions/userAction';
 
+
+/**
+ * ResetPassword component allows users to reset their password using a token.
+ *
+ * @returns {JSX.Element} The rendered ResetPassword component.
+ */
+
 const ResetPassword = () => {
   const {token} = useParams()
     const navigate = useNavigate();

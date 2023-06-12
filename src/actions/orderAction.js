@@ -15,6 +15,17 @@ import axios from "axios";
 import { API_URL } from "../api";
 axios.defaults.withCredentials = true;
 
+/**
+ * Action to create an order.
+ *
+ * @function createOrder
+ * @async
+ * @param {object} order - The order object containing order details.
+ * @returns {Promise} - A promise that resolves when the action is completed.
+ *
+ * @throws {Error} If there is an error while creating the order.
+ */
+
 // Create Order
 export const createOrder = (order) => async (dispatch) => {
     try {
@@ -36,6 +47,15 @@ export const createOrder = (order) => async (dispatch) => {
     }
   };
 
+  /**
+ * Action to fetch a user's orders.
+ *
+ * @function myOrders
+ * @async
+ * @returns {Promise} - A promise that resolves when the action is completed.
+ *
+ * @throws {Error} If there is an error while fetching the user's orders.
+ */
  // My Orders
  export const myOrders = () => async (dispatch) => {
   try {
@@ -52,6 +72,17 @@ export const createOrder = (order) => async (dispatch) => {
   }
 };
  
+/**
+ * Action to fetch order details.
+ *
+ * @function getOrderDetails
+ * @async
+ * @param {string} id - The ID of the order to fetch details for.
+ * @returns {Promise} - A promise that resolves when the action is completed.
+ *
+ * @throws {Error} If there is an error while fetching the order details.
+ */
+
 //Order Details action
 export const getOrderDetails = (id) => async (dispatch)=>{
   try {
@@ -69,6 +100,13 @@ export const getOrderDetails = (id) => async (dispatch)=>{
   }
 }
 
+/**
+ * Action to clear errors.
+ *
+ * @function clearErrors
+ * @async
+ * @returns {Promise} - A promise that resolves when the action is completed.
+ */
 
   // Clearing Errors
 export const clearErrors = () => async (dispatch) => {

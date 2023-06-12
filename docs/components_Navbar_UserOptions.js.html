@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Navbar/UserOptions.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Navbar/UserOptions.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState } from 'react'
+import './userOption.css'
+import { IconButton, Menu, MenuItem, Avatar } from "@material-ui/core";
+import { MdDashboard, MdExitToApp, MdListAlt, MdPerson } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { CgShoppingCart } from 'react-icons/cg';
+import { logout } from '../../actions/userAction';
+
+/**
+ * UserOptions component displays a set of user options in a menu.
+ *
+ * @component
+ * @param {Object} user - The user object containing user information.
+ * @returns {JSX.Element} - The UserOptions component.
+ */
+
+
+const UserOptions = ({user}) => {
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    const navigate = useNavigate();
+    const alert = useAlert();
+    const {cartItems } =  useSelector((state)=> state.cart);
+    const dispatch = useDispatch();
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const options = [
+        {
+            icon: &lt;MdListAlt />,
+            name: "Orders", 
+            func:orders
+        },
+        {
+            icon: &lt;MdPerson />,
+            name: "Profile", 
+            func:account
+        },
+        {
+            icon: &lt;CgShoppingCart style={{color: cartItems.length >0 ? "green" : "unset"}} />,
+            name: `Cart (${cartItems.length})`, 
+            func:cart
+        },
+        {
+            icon: &lt;MdExitToApp />,
+            name: "Logout", 
+            func:logoutUser
+        },  
+    ];
+
+    if(user.role === 'admin'){
+        options.unshift({
+            icon: &lt;MdDashboard />,
+            name:"Dashboard",
+            func:dashboard,
+        })
+    }
+
+    function dashboard(){
+        navigate('/admin/dashboard');
+    }
+
+    function orders(){
+        navigate('/orders');
+    }
+
+    function account(){
+        navigate('/profile');
+    }
+
+    function cart(){
+        navigate('/cart')
+    }
+
+    function logoutUser(){
+        dispatch(logout())
+        alert.success("Logout Successfully")
+    }
+
+    return (
+        &lt;>
+            &lt;IconButton
+                onClick={handleClick}
+                className="user-options"
+                aria-label="user-options"
+                aria-controls="user-options-menu"
+                aria-haspopup="true"
+                color="inherit"
+                style={{ position: 'relative' }}
+            >
+                &lt;Avatar style={{backgroundColor:'green'}}>{user.name.charAt(0).toUpperCase()}&lt;/Avatar>
+            &lt;/IconButton>
+            &lt;Menu
+                id="user-options-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                }}
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }}
+                getContentAnchorEl={null}
+            >
+                {options.map((option) => (
+                    &lt;MenuItem key={option.name} onClick={option.func}>
+                        {option.icon}&amp;nbsp;&amp;nbsp;{option.name}
+                    &lt;/MenuItem>
+                ))}
+            &lt;/Menu>
+        &lt;/>
+    );
+};
+
+export default UserOptions;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-animalTypeLoadAction.html">animalTypeLoadAction</a></li><li><a href="module-index.html">index</a></li></ul><h3>Classes</h3><ul><li><a href="About.html">About</a></li><li><a href="Animal.html">Animal</a></li><li><a href="Cart.html">Cart</a></li><li><a href="CartItemCard.html">CartItemCard</a></li><li><a href="ContactUs.html">ContactUs</a></li><li><a href="EssentialTile.html">EssentialTile</a></li><li><a href="Home.html">Home</a></li><li><a href="MedicalCareTile.html">MedicalCareTile</a></li><li><a href="MyOrders.html">MyOrders</a></li><li><a href="OrderDetails.html">OrderDetails</a></li><li><a href="SearchBar.html">SearchBar</a></li><li><a href="TreatmentTile.html">TreatmentTile</a></li><li><a href="UserOptions.html">UserOptions</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#ForgotPassword">ForgotPassword</a></li><li><a href="global.html#LoadUser">LoadUser</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#MetaData">MetaData</a></li><li><a href="global.html#ProductCard">ProductCard</a></li><li><a href="global.html#ProductDetails">ProductDetails</a></li><li><a href="global.html#Profile">Profile</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#ReviewCard">ReviewCard</a></li><li><a href="global.html#Shipping">Shipping</a></li><li><a href="global.html#Success">Success</a></li><li><a href="global.html#UpdatePassword">UpdatePassword</a></li><li><a href="global.html#VarietyModel">VarietyModel</a></li><li><a href="global.html#addItemsToCart">addItemsToCart</a></li><li><a href="global.html#clearErrors">clearErrors</a></li><li><a href="global.html#createOrder">createOrder</a></li><li><a href="global.html#createProduct">createProduct</a></li><li><a href="global.html#dailyEssentialsTypeLoadAction">dailyEssentialsTypeLoadAction</a></li><li><a href="global.html#deleteProduct">deleteProduct</a></li><li><a href="global.html#forgotPassword">forgotPassword</a></li><li><a href="global.html#getAdminProduct">getAdminProduct</a></li><li><a href="global.html#getOrderDetails">getOrderDetails</a></li><li><a href="global.html#getProduct">getProduct</a></li><li><a href="global.html#getProductDetails">getProductDetails</a></li><li><a href="global.html#getVarietyDetails">getVarietyDetails</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#medicalCareTypeLoadAction">medicalCareTypeLoadAction</a></li><li><a href="global.html#myOrders">myOrders</a></li><li><a href="global.html#newReview">newReview</a></li><li><a href="global.html#reducer">reducer</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#removeItemsFromCart">removeItemsFromCart</a></li><li><a href="global.html#resetCart">resetCart</a></li><li><a href="global.html#resetPassword">resetPassword</a></li><li><a href="global.html#saveBillingInfo">saveBillingInfo</a></li><li><a href="global.html#saveShippingInfo">saveShippingInfo</a></li><li><a href="global.html#store">store</a></li><li><a href="global.html#treatmentTypeLoadAction">treatmentTypeLoadAction</a></li><li><a href="global.html#updatePassword">updatePassword</a></li><li><a href="global.html#updateProduct">updateProduct</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 12 2023 06:27:07 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -3,6 +3,16 @@ import axios from 'axios'
 import { API_URL } from "../api";
 axios.defaults.withCredentials = true;
 
+/**
+ * Action to get the details of a specific variety.
+ *
+ * @function getVarietyDetails
+ * @async
+ * @param {string} varietyId - The ID of the variety to retrieve details for.
+ * @returns {Promise} - A promise that resolves with the variety details.
+ *
+ * @throws {Error} If there is an error while fetching the variety details.
+ */
 //get variety details
 export const getVarietyDetails = (varietyId) => async (dispatch) => {
     try {

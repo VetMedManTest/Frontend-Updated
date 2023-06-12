@@ -1,5 +1,14 @@
 import React from "react";
 import Logo from "../../assets/images/Logo.png";
+
+/**
+ * ContactUs component displays contact information and details.
+ *
+ * @component
+ * @returns {JSX.Element} - The ContactUs component.
+ */
+
+
 const ContactUs = () => {
   return (
     <section id="contact" className="h-100 gradient-form">

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Cart/Cart.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Cart/Cart.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { Typography } from '@material-ui/core'
+import React from 'react'
+import { MdRemoveShoppingCart } from 'react-icons/md'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { addItemsToCart, removeItemsFromCart } from '../../actions/cartAction'
+import "./Cart.css"
+import CartItemCard from './CartItemCard'
+import MetaData from '../MetaData'
+
+/**
+ * Cart component displays the items in the cart.
+ *
+ * @component
+ * @returns {JSX.Element} - The Cart component.
+ */
+
+const Cart = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { cartItems } = useSelector((state) => state.cart);
+
+
+  const increaseQuantity = (id,quantity,stock) =>{
+    const newQty = quantity + 1;
+    if (stock &lt;= quantity) {
+      return;
+    }
+    dispatch(addItemsToCart(id, newQty));
+  }
+
+  const decreaseQuantity = (id, quantity) => {
+    const newQty = quantity - 1;
+    if (1 >= quantity) {
+      return;
+    }
+    dispatch(addItemsToCart(id, newQty));
+  };
+  
+
+  const deleteCartItems = (id) => {
+    dispatch(removeItemsFromCart(id));
+  };
+
+
+  const checkOutHandler = () =>{
+    navigate('/shipping')
+   //navigate('/login?redirect=shipping')
+  }
+
+
+  return &lt;>
+    &lt;MetaData title="Cart-items" />
+  {
+    !cartItems || cartItems.length === 0 ?(
+      &lt;div className="emptyCart">
+        &lt;MdRemoveShoppingCart />
+        &lt;Typography> No Products in your Cart&lt;/Typography>
+        &lt;Link to="/products">View Product&lt;/Link>
+      &lt;/div>
+    ) : &lt;>
+      &lt;div className="cartPage">
+    &lt;div className="cartHeader">
+        &lt;p>Product&lt;/p>
+        &lt;p>Quantity&lt;/p>
+        {/* &lt;p>Subtotal&lt;/p> */}
+    &lt;/div>
+
+    {
+      cartItems &amp;&amp; cartItems.map((item)=>(
+        &lt;div className="cartContainer" key={item.product}>
+        &lt;CartItemCard item={item} deleteCartItems={deleteCartItems} />
+        &lt;div className="cartInput">
+            &lt;button  onClick={() =>
+                        decreaseQuantity(item.product, item.quantity)
+                      }>-&lt;/button>
+            &lt;input type="number" value={item.quantity} readOnly />
+            &lt;button onClick={()=>increaseQuantity(item.product,item.quantity,item.stock)}>+&lt;/button>
+        &lt;/div>
+        {/* &lt;p className='cartSubtotal'>{`$${item.price * item.quantity} `}&lt;/p> */}
+    &lt;/div>
+      ))
+    }
+
+   
+    &lt;div className="cartGrossProfit">
+              &lt;div>&lt;/div>
+              {/* &lt;div className="cartGrossProfitBox">
+                &lt;p>Gross Total&lt;/p>
+                &lt;p>{`$${cartItems.reduce((acc,item) => acc + item.quantity * item.price,0)}`}&lt;/p>
+              &lt;/div> */}
+              &lt;div>&lt;/div>
+              &lt;div className="checkOutBtn">
+                &lt;button onClick={checkOutHandler}>Check Out&lt;/button>
+              &lt;/div>
+            &lt;/div>
+  &lt;/div>
+    &lt;/>
+  }
+  &lt;/>
+}
+
+export default Cart</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-animalTypeLoadAction.html">animalTypeLoadAction</a></li><li><a href="module-index.html">index</a></li></ul><h3>Classes</h3><ul><li><a href="About.html">About</a></li><li><a href="Animal.html">Animal</a></li><li><a href="Cart.html">Cart</a></li><li><a href="CartItemCard.html">CartItemCard</a></li><li><a href="ContactUs.html">ContactUs</a></li><li><a href="EssentialTile.html">EssentialTile</a></li><li><a href="Home.html">Home</a></li><li><a href="MedicalCareTile.html">MedicalCareTile</a></li><li><a href="MyOrders.html">MyOrders</a></li><li><a href="OrderDetails.html">OrderDetails</a></li><li><a href="SearchBar.html">SearchBar</a></li><li><a href="TreatmentTile.html">TreatmentTile</a></li><li><a href="UserOptions.html">UserOptions</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#ForgotPassword">ForgotPassword</a></li><li><a href="global.html#LoadUser">LoadUser</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#MetaData">MetaData</a></li><li><a href="global.html#ProductCard">ProductCard</a></li><li><a href="global.html#ProductDetails">ProductDetails</a></li><li><a href="global.html#Profile">Profile</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#ReviewCard">ReviewCard</a></li><li><a href="global.html#Shipping">Shipping</a></li><li><a href="global.html#Success">Success</a></li><li><a href="global.html#UpdatePassword">UpdatePassword</a></li><li><a href="global.html#VarietyModel">VarietyModel</a></li><li><a href="global.html#addItemsToCart">addItemsToCart</a></li><li><a href="global.html#clearErrors">clearErrors</a></li><li><a href="global.html#createOrder">createOrder</a></li><li><a href="global.html#createProduct">createProduct</a></li><li><a href="global.html#dailyEssentialsTypeLoadAction">dailyEssentialsTypeLoadAction</a></li><li><a href="global.html#deleteProduct">deleteProduct</a></li><li><a href="global.html#forgotPassword">forgotPassword</a></li><li><a href="global.html#getAdminProduct">getAdminProduct</a></li><li><a href="global.html#getOrderDetails">getOrderDetails</a></li><li><a href="global.html#getProduct">getProduct</a></li><li><a href="global.html#getProductDetails">getProductDetails</a></li><li><a href="global.html#getVarietyDetails">getVarietyDetails</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#medicalCareTypeLoadAction">medicalCareTypeLoadAction</a></li><li><a href="global.html#myOrders">myOrders</a></li><li><a href="global.html#newReview">newReview</a></li><li><a href="global.html#reducer">reducer</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#removeItemsFromCart">removeItemsFromCart</a></li><li><a href="global.html#resetCart">resetCart</a></li><li><a href="global.html#resetPassword">resetPassword</a></li><li><a href="global.html#saveBillingInfo">saveBillingInfo</a></li><li><a href="global.html#saveShippingInfo">saveShippingInfo</a></li><li><a href="global.html#store">store</a></li><li><a href="global.html#treatmentTypeLoadAction">treatmentTypeLoadAction</a></li><li><a href="global.html#updatePassword">updatePassword</a></li><li><a href="global.html#updateProduct">updateProduct</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 12 2023 06:27:07 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
