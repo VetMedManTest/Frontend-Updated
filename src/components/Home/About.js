@@ -35,14 +35,6 @@ const About = () => {
                       services tailored to meet the unique needs of each
                       customer.
                     </p>
-                    <div className="text-center">
-                      <a
-                        href="/products"
-                        className="btn btn-lg btn-primary px-5"
-                      >
-                        Our Products
-                      </a>
-                    </div>
                   </div>
                 </div>
               </div>

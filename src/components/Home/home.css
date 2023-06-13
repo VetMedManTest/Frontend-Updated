@@ -11,14 +11,8 @@ background: radial-gradient(circle, rgba(140,222,123,1) 13%, rgba(0,212,255,0) 1
 
 }
 .hero-image{
-    position: relative;
-    width: 100vw;
-    height: auto;
-    text-align: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-image: url("https://res.cloudinary.com/djj6woj8s/image/upload/v1686160258/Untitled_design_3_yowbvs.png");
-}
+    background: rgb(204,245,195);
+    background: linear-gradient(0deg, rgba(204,245,195,1) 4%, rgba(3,254,19,0) 100%);}
 
 
 .hero-image::before{
@@ -71,7 +65,7 @@ top: -220px;
     font-size: 20px;
     font-family: Inter;
     position: relative;
-    top:-25vh;
+    top:-20vh;
 }
 .home-btn:hover{
     background-color: var(--dark-green-color);
@@ -94,11 +88,7 @@ top: -220px;
     .home-btn{
         position: relative;
         top: -200px;
-    }
-    .hero-image{
-        background-image: url("https://res.cloudinary.com/djj6woj8s/image/upload/v1686160375/Untitled_design_4_jceppr.png");
-    }
-    
+    }    
    
 }
 @media screen and (max-width: 700px) and (min-width: 400px) {
@@ -109,9 +99,6 @@ top: -220px;
      .home-btn{
         position: relative;
         top: -200px;
-    }
-    .hero-image{
-        background-color: #fff;
     }
   }
   
@@ -129,9 +116,5 @@ top: -220px;
     }
     .home-btn{
         top:0vh;
-    }
-    .hero-image{
-        background-size: contain;
-        background-image:url("https://res.cloudinary.com/djj6woj8s/image/upload/v1686207652/Untitled_design_5_ionjf3.png");
     }
 }

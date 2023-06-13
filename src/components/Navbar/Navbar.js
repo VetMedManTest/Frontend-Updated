@@ -76,9 +76,9 @@ const isMobile = width <= 970;
         <li><a href="/#about">About Us</a></li>
         <li><a href="/#impact">Impact</a></li>
         <li>
-          <a href="/#animals" className="desktop-item">Pet<FaAngleDown/> </a>
+          <a href="/#animals" className="desktop-item">Animal<FaAngleDown/> </a>
           <input type="checkbox" id="showDrop" />
-          <label htmlFor="showDrop" className="mobile-item">Pet<FaAngleDown/></label>
+          <label htmlFor="showDrop" className="mobile-item">Animal<FaAngleDown/></label>
           <ul className="drop-menu">
           {animalType && animalType.map(animal => (
         <li key={animal._id}>
@@ -144,7 +144,7 @@ const isMobile = width <= 970;
         {!isAuthenticated?
         <>
       <Link to='/login' className='link'>
-      <button className='signin'>Signin</button> 
+      <button className='signin'>Sign In</button> 
       </Link> 
       </> 
         :<></>}
