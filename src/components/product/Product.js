@@ -86,7 +86,7 @@ const handleFilterClick = () => {
                  {isFilterVisible ? 'Hide Filter' : 'Show Filter'}
               </button>
             ):(
-              <Box sx={{ flex: 1, p: 2 ,  maxWidth: 300, marginLeft: 20}}>
+              <Box sx={{ flex: 1, p: 2 ,  maxWidth: 300}}>
               <Card sx={{ minWidth: 170, mb: 3, mt: 3, p: 2 ,justifyContent:'center', alignItems:'center'}}>
             <Box sx={{ pb: 2 }}>
                 <Typography component="h4" sx={{ color: '#217c04', fontWeight: 600, fontFamily:'Inter'  }}>

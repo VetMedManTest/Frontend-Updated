@@ -1,6 +1,18 @@
 import React from "react";
 import Logo from "../../assets/images/Logo.png";
 const ContactUs = () => {
+  const [formStatus, setFormStatus] = React.useState('Send')
+  const onSubmit = (e) => {
+    e.preventDefault()
+    setFormStatus('Submitting...')
+    const { name, email, message } = e.target.elements
+    let conFom = {
+      name: name.value,
+      email: email.value,
+      message: message.value,
+    }
+    console.log(conFom)
+  }
   return (
     <section id="contact" className="h-100 gradient-form">
       <div className="container h-100">
@@ -10,16 +22,37 @@ const ContactUs = () => {
               <div className="card-body p-md-5 mx-md-4">
                 <div className="row">
                   <div className="col-md-6">
-                    <img
-                      src={'https://res.cloudinary.com/djj6woj8s/image/upload/v1686209248/Contact_Us_cmvf44.svg'}
-                      alt="contactUs"
-                      style={{ maxWidth: "100%" }}
-                    />
+                  <div className="container mt-5">
+      <h2 className="mb-3">Contact Us</h2>
+      <form onSubmit={onSubmit}>
+        <div className="mb-3">
+          <label className="form-label" htmlFor="name">
+            Name
+          </label>
+          <input className="form-control" type="text" id="name" required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label" htmlFor="email">
+            Email
+          </label>
+          <input className="form-control" type="email" id="email" required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label" htmlFor="message">
+            Message
+          </label>
+          <textarea className="form-control" id="message" required />
+        </div>
+        <button className="btn btn-danger" type="submit">
+          {formStatus}
+        </button>
+      </form>
+    </div>
                   </div>
                   <div className="col-md-6 mb-4 mr-4">
                     <div>
                       <img src={Logo} alt="logo" style={{ width: "185px" }} />
-                      <h1 className="mt-3 mb-5 pb-1">Contact Us</h1>
+                      <h1 className="mt-3 mb-5 pb-1">For more details</h1>
                       <p><i class="bi bi-whatsapp" style={{paddingRight:"5px", color:"green"}}></i>Mobile Number:<a href="https://wa.me/919773727759"> +91 97737 27759</a></p>
                       <p><i class="bi bi-envelope-at" style={{paddingRight:"5px", color:"red"}}></i>Email : <a href="mailto:vetmedmanhq@gmail.com">vetmedmanhq@gmail.com</a></p>
                       <p>
