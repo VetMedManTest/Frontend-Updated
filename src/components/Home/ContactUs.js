@@ -1,5 +1,7 @@
 import React from "react";
 import Logo from "../../assets/images/Logo.png";
+import axios from "axios";
+import { API_URL } from "../../api";
 const ContactUs = () => {
   const [formStatus, setFormStatus] = React.useState('Send')
   const onSubmit = (e) => {
@@ -12,6 +14,11 @@ const ContactUs = () => {
       message: message.value,
     }
     console.log(conFom)
+    axios.post(
+      `${API_URL}/api/v1/contact`,
+          conFom,
+    )
+    setFormStatus('Send')
   }
   return (
     <section id="contact" className="h-100 gradient-form">
