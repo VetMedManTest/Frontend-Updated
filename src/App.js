@@ -23,6 +23,7 @@ import MyOrders from './components/orders/MyOrders';
 import OrderDetails from './components/orders/OrderDetails';
 import BillingAddress from './components/shipping/BillingAddress';
 import ScrollToTop from './scrollToTop';
+import ROQModel from './components/ROQ';
 const ProtectedRoute = ({children}) => {
   const { isAuthenticated} = useSelector((state)=>state.user);
   if(!isAuthenticated ){
@@ -32,11 +33,10 @@ const ProtectedRoute = ({children}) => {
 }
 
 function App() {
-
   store.dispatch(LoadUser())
-
   return (
     <>
+    <ROQModel/>
     <Router>
       <ScrollToTop/>
         <Navbar/>
