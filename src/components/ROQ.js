@@ -1,8 +1,10 @@
 import React, {useState,useReducer} from 'react';
-import { Checkbox, FormControlLabel, Button, Modal, FormControl } from '@mui/material';
+import {Button, Modal} from '@mui/material';
 import './ROQ.css'
+import axios from "axios";
+import { API_URL } from '../api';
 import {
-  Typography,TextField,Box
+  Typography,TextField
 } from "@material-ui/core"
 const ROQModel = () => {
   const [open, setOpen] = useState(false);
@@ -26,10 +28,24 @@ const ROQModel = () => {
   );
   const handleSubmit = evt => {
     evt.preventDefault();
-
-    let data = { formInput };
+    let data={
+      productID:formInput['part'],
+      qty:Number(formInput['qty']),
+      leadTime:formInput['time'],
+      uom:formInput['uom'],
+      cc:formInput['cc'],
+      responseByDate:formInput["rdate"],
+      description:formInput['descp'],
+      comments:formInput['comments'],
+      companyName:formInput['comp'],
+      email:formInput['email']
+    }
     console.log(data);
     handleClose();
+    axios.post(
+      `${API_URL}/api/v1/rfq`,
+          data,
+    )
     // fetch("https://pointy-gauge.glitch.me/api/form", {
     //   method: "POST",
     //   body: JSON.stringify(data),
