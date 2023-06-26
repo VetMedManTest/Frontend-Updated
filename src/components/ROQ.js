@@ -14,30 +14,28 @@ const ROQModel = () => {
   const [formInput, setFormInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
-      part: "",
+      user: "",
       qty: "",
       time:"",
-      uom:"",
-      cc:"",
       rdate:"",
+      details:"",
       descp:"",
-      comments:"",
-      comp:"",
-      email:""
+      address:"",
+      phone:"",
+      email:"",
     }
   );
   const handleSubmit = evt => {
     evt.preventDefault();
     let data={
-      productID:formInput['part'],
+      endUser:formInput['user'],
       qty:Number(formInput['qty']),
       leadTime:formInput['time'],
-      uom:formInput['uom'],
-      cc:formInput['cc'],
-      responseByDate:formInput["rdate"],
+      responseDate:formInput["rdate"],
+      additionalInformation:formInput['details'],
       description:formInput['descp'],
-      comments:formInput['comments'],
-      companyName:formInput['comp'],
+      address:formInput['address'],
+      phoneNumber:formInput['phone'],
       email:formInput['email']
     }
     console.log(data);
@@ -90,10 +88,10 @@ const ROQModel = () => {
     <form onSubmit={handleSubmit}>
 	<div class="row">
 		<div class="col-6">        <TextField
-          style={{ width: "22vw", margin: "5px" }}
+          style={{ width: "18vw", margin: "5px" }}
           type="text"
-          name="part"
-          label="Part Number"
+          name="user"
+          label="End user"
           variant="outlined"
           onChange={handleInput}
         />
@@ -119,24 +117,8 @@ const ROQModel = () => {
 	</div>
   <br/>
 	<div class="row">
-		<div class="col-3">        <TextField
-          style={{ width: "10vw", margin: "5px" }}
-          type="text"
-          name="uom"
-          label="UoM"
-          variant="outlined"
-          onChange={handleInput}
-        /></div>
-		<div class="col-3">        <TextField
-          style={{ width: "10vw", margin: "5px" }}
-          type="text"
-          name="cc"
-          label="CC"
-          variant="outlined"
-          onChange={handleInput}
-        /></div>
-		<div class="col-6">        <TextField
-          style={{ width: "20vw", margin: "5px" }}
+  <div class="col">        <TextField
+          style={{ width: "18vw", margin: "5px" }}
           type="date"
           name="rdate"
           label="Response By Date"
@@ -145,6 +127,15 @@ const ROQModel = () => {
           InputLabelProps={{
             shrink: true
           }}  
+        /></div>
+		<div class="col">        
+    <TextField
+          style={{ width: "18vw", margin: "5px" }}
+          type="text"
+          name="details"
+          label="Additional Details"
+          variant="outlined"
+          onChange={handleInput}
         /></div>
 	</div>
   <br/>
@@ -156,13 +147,13 @@ const ROQModel = () => {
           rows={8}
           variant="outlined"
           onChange={handleInput}
-          style={{ width: "20vw", margin: "5px" }}
+          style={{ width: "18vw", margin: "5px" }}
         />
 </div>
 		<div class="col"><TextField
-          label="Comments"
+          label="Address"
           multiline
-          name="comments"
+          name="address"
           rows={8}
           variant="outlined"
           onChange={handleInput}
@@ -172,10 +163,10 @@ const ROQModel = () => {
   <br/>
 	<div class="row">
 		<div class="col"><TextField
-          style={{ width: "20vw", margin: "5px" }}
+          style={{ width: "18vw", margin: "5px" }}
           type="text"
-          name="comp"
-          label="Company Name"
+          name="phone"
+          label="Phone Number"
           variant="outlined"
           onChange={handleInput}
         /></div>
