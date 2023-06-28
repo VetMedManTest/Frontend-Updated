@@ -8,6 +8,12 @@ import "./Cart.css"
 import CartItemCard from './CartItemCard'
 import MetaData from '../MetaData'
 
+/**
+ * Cart component displays the items in the cart.
+ *
+ * @component
+ * @returns {JSX.Element} - The Cart component.
+ */
 
 const Cart = () => {
   const dispatch = useDispatch();

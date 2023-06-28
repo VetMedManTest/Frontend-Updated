@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/user/Login.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/user/Login.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState } from 'react'
+import './login.css'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { clearErrors, login } from '../../actions/userAction'
+import { useAlert } from 'react-alert'
+import Loader from '../layout/Loader/Loader'
+import Logo from "../../assets/images/Logo.png";
+
+/**
+ * Login component displays the login form and handles user login.
+ *
+ * @returns {JSX.Element} The rendered Login component.
+ */
+const Login = () => {
+
+  const dispatch = useDispatch();
+  const alert = useAlert();
+  const navigate = useNavigate();
+  const location =  useLocation();
+
+  const {loading, error,isAuthenticated} = useSelector((state)=> state.user)
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const path = location.pathname + location.search;
+  const redirect = path ? path.split("=")[1] : '/products'
+ 
+  useEffect(()=>{
+    if(error){
+      dispatch(clearErrors())
+      alert.error(error)
+    }
+    if(isAuthenticated){
+      //navigate('/products')
+      navigate(redirect)
+
+    }
+  },[dispatch,error,alert,navigate,isAuthenticated,redirect])
+
+  const loginSubmit=(e)=>{
+    e.preventDefault();
+    dispatch(login(email,password))
+
+  }
+
+  return (
+   &lt;>
+    {
+      loading ? &lt;Loader />:    &lt;section className="h-100 gradient-form" style={{backgroundColor: '#eee'}}>
+      &lt;div className="container py-5 h-100">
+        &lt;div className="row d-flex justify-content-center align-items-center h-100">
+          &lt;div className="col-xl-10">
+            &lt;div className="card rounded-3 text-black">
+              &lt;div className="row g-0">
+                &lt;div className="col-lg-6">
+                  &lt;div className="card-body p-md-5 mx-md-4">
+    
+                    &lt;div className="text-center">
+                      &lt;img src={Logo} alt='logo' 
+                        style={{width: '185px'}} />
+                      &lt;h4 className="mt-1 mb-5 pb-1">The best place to buy supplies for your pets&lt;/h4>
+                    &lt;/div>
+    
+                    &lt;form onSubmit={loginSubmit}>
+                      &lt;p>Please login to your account&lt;/p>
+    
+                      &lt;div className="form-outline mb-4">
+                          &lt;input type={'email'} id="email" className="form-control"
+                            placeholder="Enter your Email" 
+                              value={email} 
+                              onChange={e => setEmail(e.target.value)} 
+                            />
+                          &lt;label className="form-label" for="form2Example11">Email&lt;/label>
+                        &lt;/div>
+    
+                        &lt;div className="form-outline mb-4">
+                          &lt;input type={'password'} id="password" className="form-control"
+                            placeholder="Enter your Password" 
+                              value={password} 
+                              onChange={e => setPassword(e.target.value)} 
+                            />
+                          &lt;label className="form-label" for="form2Example11">Password&lt;/label>
+                        &lt;/div>
+    
+                      &lt;div className="text-center pt-1 mb-5 pb-1">
+                        &lt;button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log
+                          in&lt;/button>&lt;br/>
+                       &lt;Link to="/password/forgot">Forgot password?&lt;/Link>
+                      &lt;/div>
+    
+                      &lt;div className="d-flex align-items-center justify-content-center pb-4">
+                        &lt;p className="mb-0 me-2">Don't have an account?&lt;/p>
+                        &lt;Link to='/register'>
+                        &lt;button type="button" className="btn btn-outline-danger">Create new&lt;/button>
+                        &lt;/Link>
+                      &lt;/div>
+    
+                    &lt;/form>
+    
+                  &lt;/div>
+                &lt;/div>
+                &lt;div className="col-lg-6 d-flex align-items-center gradient-custom-2">
+                  &lt;div className="text-black px-3 py-4 p-md-5 mx-md-4">
+                    &lt;h4 className="mb-4">We are more than just a company&lt;/h4>
+                    &lt;p className="small mb-0">
+                    At Vetmedman, our utmost aim is to advance the welfare and wellness of animals. We accomplish this by upholding uncompromising quality criteria for all our wares. Our perspective on animal welfare is driven by our acknowledgment of the exceptional connection between animals and their human counterparts, which inspires us to provide incomparable service to strengthen this extraordinary relationship.&lt;/p>
+                    &lt;br />
+                    &lt;p className="small mb-0">
+                    We take pride in our commitment to supplying first-rate veterinary therapeutics and surgical medical equipment to benefit animal healthcare experts' and pet owners' cherished animal companions. Our dedication to serving the export market empowers us to attend to the unique needs of our customers.&lt;/p>
+                    &lt;br />
+                    &lt;p className="small mb-0">
+                    If you are a new customer, we warmly welcome you to register with us today and encounter the pinnacle of empathetic animal care products and services we offer. Existing customers need not sign up again.&lt;/p>
+                    &lt;br />
+                    &lt;p className="small mb-0">
+                    Thank you for choosing Vetmedman as your esteemed partner in providing exceptional animal care products and medicines.&lt;/p>
+                  &lt;/div>
+                &lt;/div>
+              &lt;/div>
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
+      &lt;/div>
+    &lt;/section>
+    }
+   &lt;/>
+  )
+}
+
+export default Login</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-animalTypeLoadAction.html">animalTypeLoadAction</a></li><li><a href="module-index.html">index</a></li></ul><h3>Classes</h3><ul><li><a href="About.html">About</a></li><li><a href="Animal.html">Animal</a></li><li><a href="Cart.html">Cart</a></li><li><a href="CartItemCard.html">CartItemCard</a></li><li><a href="ContactUs.html">ContactUs</a></li><li><a href="EssentialTile.html">EssentialTile</a></li><li><a href="Home.html">Home</a></li><li><a href="MedicalCareTile.html">MedicalCareTile</a></li><li><a href="MyOrders.html">MyOrders</a></li><li><a href="OrderDetails.html">OrderDetails</a></li><li><a href="SearchBar.html">SearchBar</a></li><li><a href="TreatmentTile.html">TreatmentTile</a></li><li><a href="UserOptions.html">UserOptions</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#ForgotPassword">ForgotPassword</a></li><li><a href="global.html#LoadUser">LoadUser</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#MetaData">MetaData</a></li><li><a href="global.html#ProductCard">ProductCard</a></li><li><a href="global.html#ProductDetails">ProductDetails</a></li><li><a href="global.html#Profile">Profile</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#ReviewCard">ReviewCard</a></li><li><a href="global.html#Shipping">Shipping</a></li><li><a href="global.html#Success">Success</a></li><li><a href="global.html#UpdatePassword">UpdatePassword</a></li><li><a href="global.html#VarietyModel">VarietyModel</a></li><li><a href="global.html#addItemsToCart">addItemsToCart</a></li><li><a href="global.html#clearErrors">clearErrors</a></li><li><a href="global.html#createOrder">createOrder</a></li><li><a href="global.html#createProduct">createProduct</a></li><li><a href="global.html#dailyEssentialsTypeLoadAction">dailyEssentialsTypeLoadAction</a></li><li><a href="global.html#deleteProduct">deleteProduct</a></li><li><a href="global.html#forgotPassword">forgotPassword</a></li><li><a href="global.html#getAdminProduct">getAdminProduct</a></li><li><a href="global.html#getOrderDetails">getOrderDetails</a></li><li><a href="global.html#getProduct">getProduct</a></li><li><a href="global.html#getProductDetails">getProductDetails</a></li><li><a href="global.html#getVarietyDetails">getVarietyDetails</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#medicalCareTypeLoadAction">medicalCareTypeLoadAction</a></li><li><a href="global.html#myOrders">myOrders</a></li><li><a href="global.html#newReview">newReview</a></li><li><a href="global.html#reducer">reducer</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#removeItemsFromCart">removeItemsFromCart</a></li><li><a href="global.html#resetCart">resetCart</a></li><li><a href="global.html#resetPassword">resetPassword</a></li><li><a href="global.html#saveBillingInfo">saveBillingInfo</a></li><li><a href="global.html#saveShippingInfo">saveShippingInfo</a></li><li><a href="global.html#store">store</a></li><li><a href="global.html#treatmentTypeLoadAction">treatmentTypeLoadAction</a></li><li><a href="global.html#updatePassword">updatePassword</a></li><li><a href="global.html#updateProduct">updateProduct</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 12 2023 06:27:07 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

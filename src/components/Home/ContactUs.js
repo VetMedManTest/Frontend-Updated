@@ -2,6 +2,15 @@ import React from "react";
 import Logo from "../../assets/images/Logo.png";
 import axios from "axios";
 import { API_URL } from "../../api";
+
+/**
+ * ContactUs component displays contact information and details.
+ *
+ * @component
+ * @returns {JSX.Element} - The ContactUs component.
+ */
+
+
 const ContactUs = () => {
   const [formStatus, setFormStatus] = React.useState('Send')
   const onSubmit = (e) => {

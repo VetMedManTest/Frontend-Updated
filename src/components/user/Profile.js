@@ -6,6 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import Loader from '../layout/Loader/Loader';
 import MetaData from '../MetaData';
 
+/**
+ * Profile component displays the user's profile information.
+ *
+ * @returns {JSX.Element} The rendered Profile component.
+ */
 const Profile = () => {
 
     const {user,loading, isAuthenticated } = useSelector(state=>state.user)

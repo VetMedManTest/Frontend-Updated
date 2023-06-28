@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Home/SearchBar.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Home/SearchBar.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import { Box, Button, InputBase } from '@mui/material'
+import { useNavigate } from 'react-router-dom';
+import {AiOutlineSearch} from 'react-icons/ai'
+
+
+
+
+const validationSchema = yup.object({
+    search: yup
+        .string('Enter your search query')
+});
+
+/**
+ * SearchBar component displays a search input field and a search button.
+ *
+ * @component
+ * @returns {JSX.Element} - The SearchBar component.
+ */
+
+const SearchBar = () => {
+
+    const navigate = useNavigate();
+
+    const onSubmit = (values, actions) => {
+        const { search } = values;
+        if (search.trim()) {
+            navigate(`/search/${search}`);
+        } else {
+            navigate('/');
+        }
+        actions.resetForm();
+        values.search = ''; 
+    }
+
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit, isSubmitting } = useFormik({
+        initialValues: {
+            search: '',
+        },
+
+        validationSchema: validationSchema,
+        onSubmit
+    });
+
+    return (
+        &lt;form onSubmit={handleSubmit} style={{ width: '50%' }} autoComplete="off">
+            &lt;Box sx={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                margin: '30px',
+                marginLeft: '50%',
+                border: '1px solid #ccc',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+                borderRadius: '25px',
+                overflow: 'hidden'
+            }}>
+                &lt;InputBase
+                    sx={{
+                        bgcolor: 'white'
+                    }}
+                    fullWidth={true}
+                    id="search"
+                    name="search"
+                    label="search"
+                    placeholder='Enter Product Name'
+                    value={values.search}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={touched.search &amp;&amp; Boolean(errors.search)}
+                    inputProps={{
+                        style: {
+                          marginLeft: '1vw',
+                          fontSize: '15px',
+                        },
+                    }}
+                />
+
+                &lt;Button
+                    color="primary"
+                    variant="contained"
+                    type="submit"
+                    disabled={isSubmitting}
+                    sx={{
+                        backgroundColor: '#3CF300',
+                        color: 'black',
+                        minWidth:'40px',
+                        maxWidth: '80px',
+                        borderRadius: 0,
+                        '&amp;:hover': {
+                            backgroundColor: 'green', 
+                            color:'white'
+                          },
+                    }}
+                >
+                    &lt;AiOutlineSearch style={{fontSize: '25px'}}/>
+                &lt;/Button>
+            &lt;/Box>
+            &lt;Box component='span' sx={{ color: 'red' }}>{touched.search &amp;&amp; errors.search}&lt;/Box>
+        &lt;/form>
+
+    );
+};
+
+export default SearchBar;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-animalTypeLoadAction.html">animalTypeLoadAction</a></li><li><a href="module-index.html">index</a></li></ul><h3>Classes</h3><ul><li><a href="About.html">About</a></li><li><a href="Animal.html">Animal</a></li><li><a href="Cart.html">Cart</a></li><li><a href="CartItemCard.html">CartItemCard</a></li><li><a href="ContactUs.html">ContactUs</a></li><li><a href="EssentialTile.html">EssentialTile</a></li><li><a href="Home.html">Home</a></li><li><a href="MedicalCareTile.html">MedicalCareTile</a></li><li><a href="MyOrders.html">MyOrders</a></li><li><a href="OrderDetails.html">OrderDetails</a></li><li><a href="SearchBar.html">SearchBar</a></li><li><a href="TreatmentTile.html">TreatmentTile</a></li><li><a href="UserOptions.html">UserOptions</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#ForgotPassword">ForgotPassword</a></li><li><a href="global.html#LoadUser">LoadUser</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#MetaData">MetaData</a></li><li><a href="global.html#ProductCard">ProductCard</a></li><li><a href="global.html#ProductDetails">ProductDetails</a></li><li><a href="global.html#Profile">Profile</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#ReviewCard">ReviewCard</a></li><li><a href="global.html#Shipping">Shipping</a></li><li><a href="global.html#Success">Success</a></li><li><a href="global.html#UpdatePassword">UpdatePassword</a></li><li><a href="global.html#VarietyModel">VarietyModel</a></li><li><a href="global.html#addItemsToCart">addItemsToCart</a></li><li><a href="global.html#clearErrors">clearErrors</a></li><li><a href="global.html#createOrder">createOrder</a></li><li><a href="global.html#createProduct">createProduct</a></li><li><a href="global.html#dailyEssentialsTypeLoadAction">dailyEssentialsTypeLoadAction</a></li><li><a href="global.html#deleteProduct">deleteProduct</a></li><li><a href="global.html#forgotPassword">forgotPassword</a></li><li><a href="global.html#getAdminProduct">getAdminProduct</a></li><li><a href="global.html#getOrderDetails">getOrderDetails</a></li><li><a href="global.html#getProduct">getProduct</a></li><li><a href="global.html#getProductDetails">getProductDetails</a></li><li><a href="global.html#getVarietyDetails">getVarietyDetails</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#medicalCareTypeLoadAction">medicalCareTypeLoadAction</a></li><li><a href="global.html#myOrders">myOrders</a></li><li><a href="global.html#newReview">newReview</a></li><li><a href="global.html#reducer">reducer</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#removeItemsFromCart">removeItemsFromCart</a></li><li><a href="global.html#resetCart">resetCart</a></li><li><a href="global.html#resetPassword">resetPassword</a></li><li><a href="global.html#saveBillingInfo">saveBillingInfo</a></li><li><a href="global.html#saveShippingInfo">saveShippingInfo</a></li><li><a href="global.html#store">store</a></li><li><a href="global.html#treatmentTypeLoadAction">treatmentTypeLoadAction</a></li><li><a href="global.html#updatePassword">updatePassword</a></li><li><a href="global.html#updateProduct">updateProduct</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 12 2023 06:27:07 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -7,6 +7,11 @@ import { useAlert } from 'react-alert'
 import Loader from '../layout/Loader/Loader'
 import Logo from "../../assets/images/Logo.png";
 
+/**
+ * Login component displays the login form and handles user login.
+ *
+ * @returns {JSX.Element} The rendered Login component.
+ */
 const Login = () => {
 
   const dispatch = useDispatch();

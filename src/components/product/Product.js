@@ -7,7 +7,6 @@ import { clearErrors, getProduct } from '../../actions/productAction';
 import { Link, useParams } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import Loader from '../layout/Loader/Loader';
-// import SelectComponent from './SelectComponent';
 import { animalTypeLoadAction } from '../../actions/categories/animalTypeAction';
 import { treatmentTypeLoadAction } from '../../actions/categories/treatmentTypeAction';
 import { dailyEssentialsTypeLoadAction } from '../../actions/categories/dailyEssentialTypeAction';
@@ -17,7 +16,6 @@ import MetaData from '../MetaData';
 import { useAlert } from 'react-alert';
 import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
 import {BsChevronExpand} from 'react-icons/bs';
-//import SelectEssentialComponent from './SelectEssentialComponent';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const Product = () => {
@@ -35,9 +33,6 @@ const Product = () => {
 
   const [page, setPage ] = useState(1);
   const [isFilterVisible, setIsFilterVisible] = useState(false);
-
-  //const [animal, setAnimal ] = useState();
-  //const [essential, setEssential ] = useState();
 
   useEffect(()=>{
     if(error){
@@ -61,15 +56,6 @@ const handleFilterClick = () => {
   setIsFilterVisible(!isFilterVisible);
 };
 
-  // const handleChangeCategory=(e)=>{
-  //     setAnimal(e.target.value)
-  // }
-
-  //for daily essentials to handle drop-down --> uncomment it if you want to use drop-down
-  // const handleChangeEssentialCategory=(e)=>{
-  //   setEssential(e.target.value)
-
-  // }
 
   return (
     <div className='all-products'>
@@ -102,7 +88,6 @@ const handleFilterClick = () => {
                 ))
               }
           </Box>
-                {/* <SelectComponent handleChangeCategory={handleChangeCategory} animal={animal} />  */}
               </Card>
   
   
@@ -137,29 +122,6 @@ const handleFilterClick = () => {
       </AccordionDetails>
     </Accordion>
   
-  
-              {/* treatment-card without accordian  */}
-            {/* <Card sx={{ minWidth: 150, mb: 3,mt:2, p: 2 }}>
-            <Box sx={{ pb: 2 }}>
-                <Typography component="h4" sx={{ color: '#217c04', fontWeight: 600 }}>
-                          SORT BY TREATMENT
-                </Typography>
-                {
-                treatmentType && treatmentType.map((treatment) => (
-                  <Link className='link' to={`/search/treatment/${treatment._id.toString()}`} key={treatment._id}>
-                <Card sx={{ minWidth: 150, mb: 1,mt:1, p: 1}}>
-                <CardContent>
-                <Typography variant="h6" color="text.primary">
-                          {treatment.TreatmentTypeName}
-                </Typography>
-                </CardContent>
-              </Card>
-              </Link>
-                ))
-              }
-          </Box>
-          </Card> */}
-  
               {/* daily-Essential-Card */}
               <Card sx={{ minWidth: 150, mb: 3,mt:2, p: 2 }}>
             <Box sx={{ pb: 2 }}>
@@ -180,10 +142,6 @@ const handleFilterClick = () => {
               }
           </Box>
           </Card>
-  
-          {/* drop-down */}
-          {/* <SelectEssentialComponent handleChangeEssentialCategory={handleChangeEssentialCategory} essential={essential}/> */}
-  
   
           {/* medical-care-card */}
           <Card sx={{ minWidth: 150, mb: 3,mt:2, p: 2 }}>
@@ -267,29 +225,6 @@ const handleFilterClick = () => {
      </Accordion>
    </Card>
    
-   
-               {/* treatment-card without accordian  */}
-             {/* <Card sx={{ minWidth: 150, mb: 3,mt:2, p: 2 }}>
-             <Box sx={{ pb: 2 }}>
-                 <Typography component="h4" sx={{ color: '#217c04', fontWeight: 600 }}>
-                           SORT BY TREATMENT
-                 </Typography>
-                 {
-                 treatmentType && treatmentType.map((treatment) => (
-                   <Link className='link' to={`/search/treatment/${treatment._id.toString()}`} key={treatment._id}>
-                 <Card sx={{ minWidth: 150, mb: 1,mt:1, p: 1}}>
-                 <CardContent>
-                 <Typography variant="h6" color="text.primary">
-                           {treatment.TreatmentTypeName}
-                 </Typography>
-                 </CardContent>
-               </Card>
-               </Link>
-                 ))
-               }
-           </Box>
-           </Card> */}
-   
                {/* daily-Essential-Card */}
                <Card sx={{ minWidth: 150, mb: 3,mt:2, p: 2 }}>
              <Box sx={{ pb: 2 }}>
@@ -312,9 +247,6 @@ const handleFilterClick = () => {
                }
            </Box>
            </Card>
-   
-           {/* drop-down */}
-           {/* <SelectEssentialComponent handleChangeEssentialCategory={handleChangeEssentialCategory} essential={essential}/> */}
    
    
            {/* medical-care-card */}

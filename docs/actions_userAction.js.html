@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: actions/userAction.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: actions/userAction.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {
+    LOGIN_REQUEST,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    REGISTER_USER_REQUEST,
+    REGISTER_USER_SUCCESS,
+    REGISTER_USER_FAIL,
+    LOAD_USER_REQUEST,
+    LOAD_USER_SUCCESS,
+    LOAD_USER_FAIL,
+    LOGOUT_USER_SUCCESS,
+    LOGOUT_USER_FAIL,
+    UPDATE_PASSWORD_REQUEST,
+    UPDATE_PASSWORD_SUCCESS,
+    UPDATE_PASSWORD_FAIL,
+    FORGOT_PASSWORD_REQUEST,
+    FORGOT_PASSWORD_SUCCESS,
+    FORGOT_PASSWORD_FAIL,
+    RESET_PASSWORD_REQUEST,
+    RESET_PASSWORD_SUCCESS,
+    RESET_PASSWORD_FAIL,
+    CLEAR_ERRORS
+
+} from '../constants/userConstants'
+
+import axios from 'axios'
+import { API_URL } from "../api";
+axios.defaults.withCredentials = true;
+
+/**
+ * Action to log in a user.
+ *
+ * @function login
+ * @async
+ * @param {string} email - The user's email address.
+ * @param {string} password - The user's password.
+ * @returns {Promise} - A promise that resolves when the login action is completed.
+ *
+ * @throws {Error} If there is an error during the login process.
+ */
+
+//login action
+export const login =(email,password) => async (dispatch)=>{
+    try{
+        dispatch({ type:LOGIN_REQUEST })
+
+        const config = { headers: {"Content-Type": "application/json" } };
+
+        const { data } =  await axios.post(
+            `${API_URL}/api/v1/login`,
+            {email, password},
+            config
+        )
+
+        dispatch({type:LOGIN_SUCCESS, payload:data.user})
+    }
+    catch(error){
+        dispatch({ type:LOGIN_FAIL, payload:error.response.data.message });
+    }
+}
+
+/**
+ * Action to register a new user.
+ *
+ * @function register
+ * @async
+ * @param {string} name - The user's name.
+ * @param {string} email - The user's email address.
+ * @param {string} password - The user's password.
+ * @returns {Promise} - A promise that resolves when the registration action is completed.
+ *
+ * @throws {Error} If there is an error during the registration process.
+ */
+
+//register
+export const register = (name,email,password) => async(dispatch)=>{
+        try{
+            dispatch({type:REGISTER_USER_REQUEST})
+
+            const config = { headers: {"Content-Type": "application/json" } };
+
+            const { data } = await axios.post(`${API_URL}/api/v1/register`,{name,email,password},config)
+
+            dispatch({type:REGISTER_USER_SUCCESS, payload:data.user})
+
+        }
+        catch(error){
+            dispatch({ type:REGISTER_USER_FAIL, payload:error.response.data.message });
+
+        }
+}
+
+/**
+ * Action to load the user's data.
+ *
+ * @function LoadUser
+ * @async
+ * @returns {Promise} - A promise that resolves when the user's data is loaded.
+ *
+ * @throws {Error} If there is an error while loading the user's data.
+ */
+
+//Load  User
+export const LoadUser =() => async (dispatch)=>{
+    try{
+        dispatch({ type:LOAD_USER_REQUEST })
+
+
+        const { data } =  await axios.get(`${API_URL}/api/v1/me`)
+
+        dispatch({type:LOAD_USER_SUCCESS, payload:data.user})
+    }
+    catch(error){
+        dispatch({ type:LOAD_USER_FAIL, payload:error.response.data.message });
+    }
+}
+
+/**
+ * Action to log out the user.
+ *
+ * @function logout
+ * @async
+ * @returns {Promise} - A promise that resolves when the user is logged out.
+ *
+ * @throws {Error} If there is an error while logging out the user.
+ */
+//User Logout
+export const logout =() => async (dispatch)=>{
+    try{
+         await axios.get(`${API_URL}/api/v1/logout`)
+
+         dispatch({ type:LOGOUT_USER_SUCCESS })
+
+
+    }
+    catch(error){
+        dispatch({ type:LOGOUT_USER_FAIL, payload:error.response.data.message });
+    }
+}
+
+/**
+ * Action to update the user's password.
+ *
+ * @function updatePassword
+ * @async
+ * @param {object} passwords - Object containing the current password and the new password.
+ * @param {string} passwords.currentPassword - The user's current password.
+ * @param {string} passwords.newPassword - The user's new password.
+ * @returns {Promise} - A promise that resolves when the password is successfully updated.
+ *
+ * @throws {Error} If there is an error while updating the password.
+ */
+//Update Password
+export const updatePassword = (passwords) => async(dispatch)=>{
+    try{
+        dispatch({type:UPDATE_PASSWORD_REQUEST})
+
+        const config = { headers: {"Content-Type": "application/json" } };
+
+        const { data } = await axios.put(`${API_URL}/api/v1/password/update`,passwords,config)
+
+        dispatch({type:UPDATE_PASSWORD_SUCCESS, payload:data.success})
+
+    }
+    catch(error){
+        dispatch({ type:UPDATE_PASSWORD_FAIL, payload:error.response.data.message });
+
+    }
+}
+
+/**
+ * Action to request a password reset email for a user.
+ *
+ * @function forgotPassword
+ * @async
+ * @param {string} email - The email address of the user.
+ * @returns {Promise} - A promise that resolves when the password reset email is successfully sent.
+ *
+ * @throws {Error} If there is an error while sending the password reset email.
+ */
+// Forgot Password
+export const forgotPassword = (email) => async (dispatch) => {
+    try {
+      dispatch({ type: FORGOT_PASSWORD_REQUEST });
+  
+      const config = { headers: { "Content-Type": "application/json" } };
+  
+      const { data } = await axios.post(`${API_URL}/api/v1/password/forgot`, email, config);
+  
+      dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message });
+    } catch (error) {
+      dispatch({
+        type: FORGOT_PASSWORD_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
+
+
+/**
+ * Action to reset the password for a user using a reset token.
+ *
+ * @function resetPassword
+ * @async
+ * @param {string} token - The reset token received via email.
+ * @param {object} passwords - The new password data.
+ * @param {string} passwords.password - The new password.
+ * @param {string} passwords.confirmPassword - The confirmation of the new password.
+ * @returns {Promise} - A promise that resolves when the password is successfully reset.
+ *
+ * @throws {Error} If there is an error while resetting the password.
+ */
+  // Reset Password
+export const resetPassword = (token, passwords) => async (dispatch) => {
+    try {
+      dispatch({ type: RESET_PASSWORD_REQUEST });
+  
+      const config = { headers: { "Content-Type": "application/json" } };
+  
+      const { data } = await axios.put(
+        `${API_URL}/api/v1/password/reset/${token}`,
+        passwords,
+        config
+      );
+  
+      dispatch({ type: RESET_PASSWORD_SUCCESS, payload: data.success });
+    } catch (error) {
+      dispatch({
+        type: RESET_PASSWORD_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
+
+//Clearing Errors
+export const clearErrors = () => async (dispatch)=>{
+    dispatch({
+        type:CLEAR_ERRORS
+    })
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-animalTypeLoadAction.html">animalTypeLoadAction</a></li><li><a href="module-index.html">index</a></li></ul><h3>Classes</h3><ul><li><a href="About.html">About</a></li><li><a href="Animal.html">Animal</a></li><li><a href="Cart.html">Cart</a></li><li><a href="CartItemCard.html">CartItemCard</a></li><li><a href="ContactUs.html">ContactUs</a></li><li><a href="EssentialTile.html">EssentialTile</a></li><li><a href="Home.html">Home</a></li><li><a href="MedicalCareTile.html">MedicalCareTile</a></li><li><a href="MyOrders.html">MyOrders</a></li><li><a href="OrderDetails.html">OrderDetails</a></li><li><a href="SearchBar.html">SearchBar</a></li><li><a href="TreatmentTile.html">TreatmentTile</a></li><li><a href="UserOptions.html">UserOptions</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#ForgotPassword">ForgotPassword</a></li><li><a href="global.html#LoadUser">LoadUser</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#MetaData">MetaData</a></li><li><a href="global.html#ProductCard">ProductCard</a></li><li><a href="global.html#ProductDetails">ProductDetails</a></li><li><a href="global.html#Profile">Profile</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#ReviewCard">ReviewCard</a></li><li><a href="global.html#Shipping">Shipping</a></li><li><a href="global.html#Success">Success</a></li><li><a href="global.html#UpdatePassword">UpdatePassword</a></li><li><a href="global.html#VarietyModel">VarietyModel</a></li><li><a href="global.html#addItemsToCart">addItemsToCart</a></li><li><a href="global.html#clearErrors">clearErrors</a></li><li><a href="global.html#createOrder">createOrder</a></li><li><a href="global.html#createProduct">createProduct</a></li><li><a href="global.html#dailyEssentialsTypeLoadAction">dailyEssentialsTypeLoadAction</a></li><li><a href="global.html#deleteProduct">deleteProduct</a></li><li><a href="global.html#forgotPassword">forgotPassword</a></li><li><a href="global.html#getAdminProduct">getAdminProduct</a></li><li><a href="global.html#getOrderDetails">getOrderDetails</a></li><li><a href="global.html#getProduct">getProduct</a></li><li><a href="global.html#getProductDetails">getProductDetails</a></li><li><a href="global.html#getVarietyDetails">getVarietyDetails</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#medicalCareTypeLoadAction">medicalCareTypeLoadAction</a></li><li><a href="global.html#myOrders">myOrders</a></li><li><a href="global.html#newReview">newReview</a></li><li><a href="global.html#reducer">reducer</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#removeItemsFromCart">removeItemsFromCart</a></li><li><a href="global.html#resetCart">resetCart</a></li><li><a href="global.html#resetPassword">resetPassword</a></li><li><a href="global.html#saveBillingInfo">saveBillingInfo</a></li><li><a href="global.html#saveShippingInfo">saveShippingInfo</a></li><li><a href="global.html#store">store</a></li><li><a href="global.html#treatmentTypeLoadAction">treatmentTypeLoadAction</a></li><li><a href="global.html#updatePassword">updatePassword</a></li><li><a href="global.html#updateProduct">updateProduct</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 12 2023 06:27:07 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

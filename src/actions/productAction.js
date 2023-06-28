@@ -27,6 +27,21 @@ import {
 import { API_URL } from "../api";
 axios.defaults.withCredentials = true;
 
+/**
+ * Action to fetch products based on various filters and search parameters.
+ *
+ * @function getProduct
+ * @async
+ * @param {number} pageNumber - The page number of the product results.
+ * @param {string} keyword - The keyword to search for in product names.
+ * @param {string} animal - The animal type filter for products.
+ * @param {string} treatment - The treatment type filter for products.
+ * @param {string} dailyEssential - The daily essential type filter for products.
+ * @param {string} medicalCare - The medical care type filter for products.
+ * @returns {Promise} - A promise that resolves when the action is completed.
+ *
+ * @throws {Error} If there is an error while fetching the products.
+ */
 
 export const getProduct = (pageNumber,keyword='',animal='',treatment='',dailyEssential='',medicalCare='') => async (dispatch)=>
 {
@@ -51,6 +66,18 @@ export const getProduct = (pageNumber,keyword='',animal='',treatment='',dailyEss
     }
 }
 
+
+/**
+ * Action to fetch product details.
+ *
+ * @function getProductDetails
+ * @async
+ * @param {string} id - The ID of the product to fetch details for.
+ * @returns {Promise} - A promise that resolves when the action is completed.
+ *
+ * @throws {Error} If there is an error while fetching the product details.
+ */
+
 //get product details
 export const getProductDetails = (id) => async (dispatch) => {
     try {
@@ -68,6 +95,20 @@ export const getProductDetails = (id) => async (dispatch) => {
       });
     }
   };
+
+/**
+ * Action to submit a new review for a product.
+ *
+ * @function newReview
+ * @async
+ * @param {Object} reviewData - The data for the new review.
+ * @param {string} reviewData.productId - The ID of the product being reviewed.
+ * @param {string} reviewData.rating - The rating given in the review.
+ * @param {string} reviewData.comment - The comment provided in the review.
+ * @returns {Promise} - A promise that resolves when the action is completed.
+ *
+ * @throws {Error} If there is an error while submitting the new review.
+ */
 
 // NEW REVIEW
 export const newReview = (reviewData) => async (dispatch) => {
@@ -100,6 +141,16 @@ export const newReview = (reviewData) => async (dispatch) => {
 }
 
 //-------------------------------------------------
+/**
+ * Action to fetch admin products.
+ *
+ * @function getAdminProduct
+ * @async
+ * @returns {Promise} - A promise that resolves when the action is completed.
+ *
+ * @throws {Error} If there is an error while fetching the admin products.
+ */
+
 
 // Get All Products For Admin
 export const getAdminProduct = () => async (dispatch) => {
@@ -119,6 +170,17 @@ export const getAdminProduct = () => async (dispatch) => {
     });
   }
 };
+
+/**
+ * Action to create a new product as an admin.
+ *
+ * @function createProduct
+ * @async
+ * @param {Object} productData - The data for the new product.
+ * @returns {Promise} - A promise that resolves when the action is completed.
+ *
+ * @throws {Error} If there is an error while creating the new product.
+ */
 
 // Create Product Admin
 export const createProduct = (productData) => async (dispatch) => {
@@ -147,6 +209,17 @@ export const createProduct = (productData) => async (dispatch) => {
   }
 };
 
+/**
+ * Action to delete a product as an admin.
+ *
+ * @function deleteProduct
+ * @async
+ * @param {string} id - The ID of the product to be deleted.
+ * @returns {Promise} - A promise that resolves when the action is completed.
+ *
+ * @throws {Error} If there is an error while deleting the product.
+ */
+
 //Delete product 
 export const deleteProduct = (id) => async (dispatch)=>{
   try {
@@ -167,6 +240,19 @@ export const deleteProduct = (id) => async (dispatch)=>{
     })
   }
 }
+
+
+/**
+ * Action to update a product as an admin.
+ *
+ * @function updateProduct
+ * @async
+ * @param {string} id - The ID of the product to be updated.
+ * @param {Object} productData - The updated data for the product.
+ * @returns {Promise} - A promise that resolves when the action is completed.
+ *
+ * @throws {Error} If there is an error while updating the product.
+ */
 
 // Update Product
 export const updateProduct = (id, productData) => async (dispatch) => {

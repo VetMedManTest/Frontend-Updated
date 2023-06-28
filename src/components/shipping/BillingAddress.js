@@ -8,6 +8,11 @@ import { saveBillingInfo } from '../../actions/cartAction';
 import MetaData from '../MetaData';
 import CheckoutSteps from './CheckoutSteps';
 
+/**
+ * Shipping component displays the form for entering shipping details.
+ *
+ * @returns {JSX.Element} The rendered Shipping component.
+ */
 const Shipping = () => {
 
     const dispatch = useDispatch()
@@ -29,6 +34,12 @@ const Shipping = () => {
     const [country, setCountry] = useState(shippingInfo.country);
     const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
     const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
+  
+     /**
+   * Handles the form submission for shipping details.
+   *
+   * @param {Event} e - The form submit event.
+   */
   
     const shippingSubmit = (e) => {
         e.preventDefault();

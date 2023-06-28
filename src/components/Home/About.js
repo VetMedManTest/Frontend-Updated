@@ -1,6 +1,13 @@
 import React from "react";
 import Logo from "../../assets/images/Logo.png";
 import './about.css'
+/**
+ * About component displays information about the company.
+ *
+ * @component
+ * @returns {JSX.Element} - The About component.
+ */
+
 const About = () => {
   return (
     <section id="about" className="h-100 gradient-form">

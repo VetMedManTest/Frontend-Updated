@@ -8,6 +8,13 @@ import MetaData from '../MetaData';
 import Loader from '../layout/Loader/Loader';
 import { clearErrors, getOrderDetails } from '../../actions/orderAction';
 
+/**
+ * OrderDetails component displays the details of a specific order.
+ *
+ * @component
+ * @returns {JSX.Element} - The OrderDetails component.
+ */
+
 
 const OrderDetails = () => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);

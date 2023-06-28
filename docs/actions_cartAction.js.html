@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: actions/cartAction.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: actions/cartAction.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {
+    ADD_TO_CART,
+    REMOVE_CART_ITEM,
+    RESET_CART,
+    SAVE_BILLING_INFO,
+    SAVE_SHIPPING_INFO,
+  } from "../constants/cartConstant"
+
+  import axios from 'axios'
+
+  import { API_URL } from "../api";
+  axios.defaults.withCredentials = true;
+  
+/**
+ * Action to add items to the cart.
+ *
+ * @function addItemsToCart
+ * @async
+ * @param {string} id - The ID of the product to add to the cart.
+ * @param {number} quantity - The quantity of the product to add to the cart.
+ * @param {string} userId - The ID of the user.
+ * @returns {Promise} - A promise that resolves when the action is completed.
+ *
+ * @throws {Error} If there is an error while adding items to the cart.
+ */
+
+  // Add to Cart
+  export const addItemsToCart = (id, quantity, userId) => async (dispatch, getState) => {
+    const { data } = await axios.get(`${API_URL}/api/v1/product/${id}`);
+    let storedVarieties = null;
+    // Check if varieties are selected for the product
+    if (data.product.varieties) {
+      storedVarieties = JSON.parse(localStorage.getItem("VetselectedValues"));
+    }
+    let payload = {
+      product: data.product._id,
+      name: data.product.name,
+      image: data.product.images[0].url,
+      stock: data.product.Stock,
+      quantity,
+    };
+    // Check if varieties are selected for the product
+    if (storedVarieties) {
+      payload.varieties = storedVarieties;
+    }
+    dispatch({
+      type: ADD_TO_CART,
+      payload,
+    });
+    localStorage.setItem("vetcartItems", JSON.stringify(getState().cart.cartItems));
+  };
+
+
+/**
+ * Action to remove items from the cart.
+ *
+ * @function removeItemsFromCart
+ * @async
+ * @param {string} id - The ID of the item to remove from the cart.
+ * @returns {Promise} - A promise that resolves when the action is completed.
+ *
+ * @throws {Error} If there is an error while removing items from the cart.
+ */
+
+  // REMOVE FROM CART
+export const removeItemsFromCart = (id) => async (dispatch, getState) => {
+    dispatch({
+      type: REMOVE_CART_ITEM,
+      payload: id,
+    });
+  
+    localStorage.setItem("vetcartItems", JSON.stringify(getState().cart.cartItems));
+  };
+
+  /**
+ * Action to save shipping information.
+ *
+ * @function saveShippingInfo
+ * @async
+ * @param {object} data - The shipping information to save.
+ * @returns {Promise} - A promise that resolves when the action is completed.
+ *
+ * @throws {Error} If there is an error while saving the shipping information.
+ */
+ 
+  
+  // SAVE SHIPPING INFO
+export const saveShippingInfo = (data) => async (dispatch) => {
+    dispatch({
+      type: SAVE_SHIPPING_INFO,
+      payload: data,
+    });
+  
+    localStorage.setItem("vetshippingInfo", JSON.stringify(data));
+  };
+
+
+  /**
+ * Action to save billing information.
+ *
+ * @function saveBillingInfo
+ * @async
+ * @param {object} data - The billing information to save.
+ * @returns {Promise} - A promise that resolves when the action is completed.
+ *
+ * @throws {Error} If there is an error while saving the billing information.
+ */
+
+
+  // SAVE BILLING INFO
+export const saveBillingInfo = (data) => async (dispatch) => {
+    dispatch({
+      type: SAVE_BILLING_INFO,
+      payload: data,
+    });
+  
+    localStorage.setItem("vetbillingInfo", JSON.stringify(data));
+  };
+
+
+/**
+ * Action to reset the cart.
+ *
+ * @function resetCart
+ * @async
+ * @returns {Promise} - A promise that resolves when the action is completed.
+ *
+ * @description This action provides various functions related to the cart, such as adding items to the cart,
+ * removing items from the cart, saving shipping information, saving billing information, and resetting the cart.
+ * It dispatches different actions based on the action type:
+ * - ADD_TO_CART: Dispatched when items are added to the cart.
+ * - REMOVE_CART_ITEM: Dispatched when items are removed from the cart.
+ * - SAVE_SHIPPING_INFO: Dispatched when the shipping information is saved.
+ * - SAVE_BILLING_INFO: Dispatched when the billing information is saved.
+ * - RESET_CART: Dispatched when the cart is reset.
+ *
+ * @example
+ * import {
+ *   ADD_TO_CART,
+ *   REMOVE_CART_ITEM,
+ *   RESET_CART,
+ *   SAVE_BILLING_INFO,
+ *   SAVE_SHIPPING_INFO,
+ * } from "../constants/cartConstant";
+ *
+ * import axios from 'axios';
+ * import { API_URL } from "../api";
+ * axios.defaults.withCredentials = true;
+ *
+ * export const addItemsToCart = (id, quantity, userId) => async (dispatch, getState) => {
+ *   // ... function implementation
+ * };
+ *
+ * export const removeItemsFromCart = (id) => async (dispatch, getState) => {
+ *   // ... function implementation
+ * };
+ *
+ * export const saveShippingInfo = (data) => async (dispatch) => {
+ *   // ... function implementation
+ * };
+ *
+ * export const saveBillingInfo = (data) => async (dispatch) => {
+ *   // ... function implementation
+ * };
+ *
+ * export const resetCart = () => async (dispatch) => {
+ *   // ... function implementation
+ * };
+ */
+
+// Reset Cart
+export const resetCart = () => async (dispatch) => {
+  dispatch({
+    type: RESET_CART,
+  });
+
+  localStorage.removeItem("vetcartItems");
+  //localStorage.removeItem("vetshippingInfo");
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-animalTypeLoadAction.html">animalTypeLoadAction</a></li><li><a href="module-index.html">index</a></li></ul><h3>Classes</h3><ul><li><a href="About.html">About</a></li><li><a href="Animal.html">Animal</a></li><li><a href="Cart.html">Cart</a></li><li><a href="CartItemCard.html">CartItemCard</a></li><li><a href="ContactUs.html">ContactUs</a></li><li><a href="EssentialTile.html">EssentialTile</a></li><li><a href="Home.html">Home</a></li><li><a href="MedicalCareTile.html">MedicalCareTile</a></li><li><a href="MyOrders.html">MyOrders</a></li><li><a href="OrderDetails.html">OrderDetails</a></li><li><a href="SearchBar.html">SearchBar</a></li><li><a href="TreatmentTile.html">TreatmentTile</a></li><li><a href="UserOptions.html">UserOptions</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#ForgotPassword">ForgotPassword</a></li><li><a href="global.html#LoadUser">LoadUser</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#MetaData">MetaData</a></li><li><a href="global.html#ProductCard">ProductCard</a></li><li><a href="global.html#ProductDetails">ProductDetails</a></li><li><a href="global.html#Profile">Profile</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#ReviewCard">ReviewCard</a></li><li><a href="global.html#Shipping">Shipping</a></li><li><a href="global.html#Success">Success</a></li><li><a href="global.html#UpdatePassword">UpdatePassword</a></li><li><a href="global.html#VarietyModel">VarietyModel</a></li><li><a href="global.html#addItemsToCart">addItemsToCart</a></li><li><a href="global.html#clearErrors">clearErrors</a></li><li><a href="global.html#createOrder">createOrder</a></li><li><a href="global.html#createProduct">createProduct</a></li><li><a href="global.html#dailyEssentialsTypeLoadAction">dailyEssentialsTypeLoadAction</a></li><li><a href="global.html#deleteProduct">deleteProduct</a></li><li><a href="global.html#forgotPassword">forgotPassword</a></li><li><a href="global.html#getAdminProduct">getAdminProduct</a></li><li><a href="global.html#getOrderDetails">getOrderDetails</a></li><li><a href="global.html#getProduct">getProduct</a></li><li><a href="global.html#getProductDetails">getProductDetails</a></li><li><a href="global.html#getVarietyDetails">getVarietyDetails</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#logout">logout</a></li><li><a href="global.html#medicalCareTypeLoadAction">medicalCareTypeLoadAction</a></li><li><a href="global.html#myOrders">myOrders</a></li><li><a href="global.html#newReview">newReview</a></li><li><a href="global.html#reducer">reducer</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#removeItemsFromCart">removeItemsFromCart</a></li><li><a href="global.html#resetCart">resetCart</a></li><li><a href="global.html#resetPassword">resetPassword</a></li><li><a href="global.html#saveBillingInfo">saveBillingInfo</a></li><li><a href="global.html#saveShippingInfo">saveShippingInfo</a></li><li><a href="global.html#store">store</a></li><li><a href="global.html#treatmentTypeLoadAction">treatmentTypeLoadAction</a></li><li><a href="global.html#updatePassword">updatePassword</a></li><li><a href="global.html#updateProduct">updateProduct</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 12 2023 06:27:07 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

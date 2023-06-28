@@ -5,10 +5,20 @@ import { Box, Button, InputBase } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
 import {AiOutlineSearch} from 'react-icons/ai'
 
+
+
+
 const validationSchema = yup.object({
     search: yup
         .string('Enter your search query')
 });
+
+/**
+ * SearchBar component displays a search input field and a search button.
+ *
+ * @component
+ * @returns {JSX.Element} - The SearchBar component.
+ */
 
 const SearchBar = () => {
 

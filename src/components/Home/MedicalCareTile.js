@@ -7,6 +7,15 @@ import './treatmentTile.css'
 import { medicalCareTypeLoadAction } from '../../actions/categories/medicalCareTypeAction'
 import Loader from '../layout/Loader/Loader'
 
+
+/**
+ * MedicalCareTile component displays the medical care types for pets.
+ *
+ * @component
+ * @returns {JSX.Element} - The MedicalCareTile component.
+ */
+
+
 const MedicalCareTile = () => {
 
     const { MedicalCareType, loading } = useSelector(state => state.medicalCareTypeAll)

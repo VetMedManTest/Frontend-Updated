@@ -27,6 +27,18 @@ import axios from 'axios'
 import { API_URL } from "../api";
 axios.defaults.withCredentials = true;
 
+/**
+ * Action to log in a user.
+ *
+ * @function login
+ * @async
+ * @param {string} email - The user's email address.
+ * @param {string} password - The user's password.
+ * @returns {Promise} - A promise that resolves when the login action is completed.
+ *
+ * @throws {Error} If there is an error during the login process.
+ */
+
 //login action
 export const login =(email,password) => async (dispatch)=>{
     try{
@@ -47,6 +59,19 @@ export const login =(email,password) => async (dispatch)=>{
     }
 }
 
+/**
+ * Action to register a new user.
+ *
+ * @function register
+ * @async
+ * @param {string} name - The user's name.
+ * @param {string} email - The user's email address.
+ * @param {string} password - The user's password.
+ * @returns {Promise} - A promise that resolves when the registration action is completed.
+ *
+ * @throws {Error} If there is an error during the registration process.
+ */
+
 //register
 export const register = (name,email,password) => async(dispatch)=>{
         try{
@@ -65,6 +90,16 @@ export const register = (name,email,password) => async(dispatch)=>{
         }
 }
 
+/**
+ * Action to load the user's data.
+ *
+ * @function LoadUser
+ * @async
+ * @returns {Promise} - A promise that resolves when the user's data is loaded.
+ *
+ * @throws {Error} If there is an error while loading the user's data.
+ */
+
 //Load  User
 export const LoadUser =() => async (dispatch)=>{
     try{
@@ -80,7 +115,15 @@ export const LoadUser =() => async (dispatch)=>{
     }
 }
 
-
+/**
+ * Action to log out the user.
+ *
+ * @function logout
+ * @async
+ * @returns {Promise} - A promise that resolves when the user is logged out.
+ *
+ * @throws {Error} If there is an error while logging out the user.
+ */
 //User Logout
 export const logout =() => async (dispatch)=>{
     try{
@@ -95,6 +138,18 @@ export const logout =() => async (dispatch)=>{
     }
 }
 
+/**
+ * Action to update the user's password.
+ *
+ * @function updatePassword
+ * @async
+ * @param {object} passwords - Object containing the current password and the new password.
+ * @param {string} passwords.currentPassword - The user's current password.
+ * @param {string} passwords.newPassword - The user's new password.
+ * @returns {Promise} - A promise that resolves when the password is successfully updated.
+ *
+ * @throws {Error} If there is an error while updating the password.
+ */
 //Update Password
 export const updatePassword = (passwords) => async(dispatch)=>{
     try{
@@ -113,6 +168,16 @@ export const updatePassword = (passwords) => async(dispatch)=>{
     }
 }
 
+/**
+ * Action to request a password reset email for a user.
+ *
+ * @function forgotPassword
+ * @async
+ * @param {string} email - The email address of the user.
+ * @returns {Promise} - A promise that resolves when the password reset email is successfully sent.
+ *
+ * @throws {Error} If there is an error while sending the password reset email.
+ */
 // Forgot Password
 export const forgotPassword = (email) => async (dispatch) => {
     try {
@@ -132,7 +197,19 @@ export const forgotPassword = (email) => async (dispatch) => {
   };
 
 
-  
+/**
+ * Action to reset the password for a user using a reset token.
+ *
+ * @function resetPassword
+ * @async
+ * @param {string} token - The reset token received via email.
+ * @param {object} passwords - The new password data.
+ * @param {string} passwords.password - The new password.
+ * @param {string} passwords.confirmPassword - The confirmation of the new password.
+ * @returns {Promise} - A promise that resolves when the password is successfully reset.
+ *
+ * @throws {Error} If there is an error while resetting the password.
+ */
   // Reset Password
 export const resetPassword = (token, passwords) => async (dispatch) => {
     try {

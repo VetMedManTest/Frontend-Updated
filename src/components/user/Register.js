@@ -6,6 +6,13 @@ import { useAlert } from 'react-alert'
 import Loader from '../layout/Loader/Loader'
 import Logo from "../../assets/images/Logo.png";
 
+
+
+/**
+ * Register component allows users to register a new account.
+ *
+ * @returns {JSX.Element} The rendered Register component.
+ */
 const Register = () => {
 
     const [name, setName] = useState('')

@@ -16,10 +16,12 @@
     "@testing-library/react": "11.2.7",
     "@testing-library/user-event": "12.8.3",
     "axios": "^1.4.0",
+    "better-docs": "^2.7.2",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.5",
     "country-state-city": "^3.1.4",
     "formik": "^2.2.9",
+    "jsdoc": "^4.0.2",
     "react": "17.0.2",
     "react-alert": "^7.0.3",
     "react-alert-template-basic": "^1.0.2",
@@ -40,6 +42,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "docs": "jsdoc -c jsdoc.conf.json",
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
     "eject": "react-scripts eject"
   },

@@ -10,7 +10,11 @@ import MetaData from '../MetaData';
 import Loader from '../layout/Loader/Loader';
 import { UPDATE_PASSWORD_RESET } from '../../constants/userConstants';
 
-
+/**
+ * UpdatePassword component allows users to update their password.
+ *
+ * @returns {JSX.Element} The rendered UpdatePassword component.
+ */
 const UpdatePassword = () => {
     
     const navigate = useNavigate();

@@ -6,6 +6,15 @@ import { Link, useParams } from 'react-router-dom'
 import { animalTypeLoadAction } from '../../actions/categories/animalTypeAction'
 import Loader from '../layout/Loader/Loader'
 
+
+/**
+ * Animal component displays species-wise products.
+ *
+ * @component
+ * @returns {JSX.Element} - The Animal component.
+ */
+
+
 const Animal = () => {
 
   const {animalType ,loading} = useSelector(state=>state.animalTypeAll)
