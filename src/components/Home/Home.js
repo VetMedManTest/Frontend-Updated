@@ -24,8 +24,8 @@ const Home = () => {
     <section id="home">
       <MetaData title="VetMedMan Home Page" />
       <div className='home'>
-        <SearchBar />
         <div className='hero-image'>
+        <SearchBar />
         <div className='hero-content'>
             <div className='hero-content-inner'>
                 <h1>The best place to buy supplies for your pets</h1>

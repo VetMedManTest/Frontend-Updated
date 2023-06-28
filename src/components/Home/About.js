@@ -31,9 +31,7 @@ const About = () => {
                       products? At Vetmedman, we are passionate about providing
                       top-quality medical equipment and supplies for veterinary
                       doctors and hospitals. We strive for commitment,
-                      excellence, and customer satisfaction.
-                    </p>
-                    <p className="mb-4">
+                      excellence, and customer satisfaction.<br/>
                       Our products meet the highest standards of quality and
                       reliability, and we deal with a wide variety of equipment,
                       from syringes and vet machines to cages, vet instruments,
@@ -42,14 +40,6 @@ const About = () => {
                       services tailored to meet the unique needs of each
                       customer.
                     </p>
-                    <div className="text-center">
-                      <a
-                        href="/products"
-                        className="btn btn-lg btn-primary px-5"
-                      >
-                        Our Products
-                      </a>
-                    </div>
                   </div>
                 </div>
               </div>

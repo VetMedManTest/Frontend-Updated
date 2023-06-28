@@ -38,7 +38,7 @@ const ProductCard = ({ product }) => {
         <div className="product-size">Size: {product.size_of_instrument.join(', ')}</div>
         <div className="product-stage">Stage: {product.stage}</div>
     </div>
-        <Rating className='product-rating ' {...options} /><span className='noOfReviews'>({product.numOfReviews} Reviews)</span>
+        {/* <Rating className='product-rating ' {...options} /><span className='noOfReviews'>({product.numOfReviews} Reviews)</span> */}
         <IconButton aria-label="add to favorites">
           <AiOutlineHeart />
         </IconButton>

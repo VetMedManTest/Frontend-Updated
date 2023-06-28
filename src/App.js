@@ -23,6 +23,8 @@ import MyOrders from './components/orders/MyOrders';
 import OrderDetails from './components/orders/OrderDetails';
 import BillingAddress from './components/shipping/BillingAddress';
 import ScrollToTop from './scrollToTop';
+import ROQModel from './components/ROQ';
+import Footer from './components/Footer';
 const ProtectedRoute = ({children}) => {
   const { isAuthenticated} = useSelector((state)=>state.user);
   if(!isAuthenticated ){
@@ -36,15 +38,10 @@ const ProtectedRoute = ({children}) => {
  */
 
 function App() {
-
-    /**
-   * Load user data on component mount.
-   */
-    store.dispatch(LoadUser());
-
-
+  store.dispatch(LoadUser())
   return (
     <>
+    <ROQModel/>
     <Router>
       <ScrollToTop/>
         <Navbar/>
@@ -131,6 +128,7 @@ function App() {
         <Route path='/search/animal/:animal' element={<Product />} />
         <Route path="/search/:keyword" element={<Product />} />
         </Routes>
+        <Footer/>
     </Router>
     </>
   );

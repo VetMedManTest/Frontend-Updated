@@ -343,6 +343,7 @@ const ProductDetails = () => {
                   </Typography>
                 )}
 {/* accordian */}
+<Typography style={{marginLeft:"1vw"}} className='reviewsHeading'>FAQs</Typography>
     <div className='all-accordian'>
 {/* all-faqs-accordian */}
   <div className='faqs-box'>
